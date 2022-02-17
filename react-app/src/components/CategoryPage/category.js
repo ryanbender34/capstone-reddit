@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getCategories, selectCategory } from '../../store/categories';
-import { getThreads } from '../../store/threads';
-// import ProjectCard from '../ProjectCard/ProjectCard';
+import {  selectCategory } from '../../store/categories';
+import ThreadCard from '../ThreadCard/threadcard';
 import './category.css';
 
 const CategoryPage = () => {
@@ -36,10 +35,7 @@ const CategoryPage = () => {
             <div className='thread-container'>
                 {curThreadsArr?.map((thread, index) => {
                     return (
-                        <div key={`thread-${index}`} className='thread'>
-                            <h1 className='category-header-text'>Now Viewing the {thread.title} Card</h1>
-                            <p>{thread.content}</p>
-                        </div>
+                        <ThreadCard key ={thread.id} thread={thread}> </ThreadCard>
                     )
                 })}
             </div >

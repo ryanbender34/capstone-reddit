@@ -3,13 +3,17 @@ from app.models import db, Thread
 
 # Adds a demo thread, you can add other threads here if you want
 def seed_threads():
-    athread = Thread(user_id=1, title="seed thread", description="blah", category_id=1, content="paragraph here")
-    anotherthread = Thread(user_id=2, title="seed thread", description="blah", category_id=2, content="paragraph here")
+    a = Thread(user_id=1, title="Which stat is the most correlated to nba upside?", description="Examining which standardized statistics are helpful overall to determine future potential", category_id=1, content="This is a paragraph, where we are doing things to display on paper. I would like it ot be long in order to display on the page and start to figure out what the end result of a threa d page will olook laike evenetually .")
+    b = Thread(user_id=2, title="Dynasty fantasy football mock draft", description="blah", category_id=2, content="paragraph here")
+    c = Thread(user_id=1, title="Which stat is the most correlated to nba upside?", description="Examining which standardized statistics are helpful overall to determine future potential", category_id=1, content="This is a paragraph, where we are doing things to display on paper. I would like it ot be long in order to display on the page and start to figure out what the end result of a threa d page will olook laike evenetually .")
+
 
     # Thread.__table__.create(db.session.bind)
 
-    db.session.add(athread)
-    db.session.add(anotherthread)
+    db.session.add(a)
+    db.session.add(b)
+    db.session.add(c)
+
     db.session.commit()
 
 
