@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom';
-import './threadcard.css';
+import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const ThreadCard = ({ thread }) => {
+    const cat = useSelector(state => {
+        return state.categories.active.name
+    })
 	return (
-		<div className='thread'>
-            <h1 className='category-header-text'>Now Viewing the {thread.title} Card</h1>
-            <p>{thread.content}</p>
-         </div>
+        <>
+            <Link className="thread-row" to={`${cat}/${thread.id}`}>
+                <h3 className='thread-header-text'> {thread.title}</h3>
+                <p className='thread-body-text'>{thread.content}</p>
+            </Link>
+        </>
 	)
 }
 

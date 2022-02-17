@@ -10,7 +10,7 @@ class Comment(db.Model):
     thread_id = db.Column(db.Integer, db.ForeignKey( "threads.id"), nullable=False)
     reply = db.Column(db.Integer)
     content = db.Column(db.Text, nullable=False)
-    vote = db.Column(db.Integer, nullable=False)
+    vote = db.Column(db.Integer, nullable=False, default=0)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
@@ -32,11 +32,12 @@ class Comment(db.Model):
     def to_JSON(self):
         return {
             "id": self.id,
-            "author_id": self.author_id,
-            "thread_id": self.thread_id,
+            "authorId": self.author_id,
+            "threadId": self.thread_id,
             "reply": self.reply,
             "content": self.content,
+            "username": self.username,
             "vote": self.vote,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "createdAt": self.created_at,
+            "updatedAt": self.updated_at
         }

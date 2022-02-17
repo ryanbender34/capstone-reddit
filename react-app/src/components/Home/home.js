@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getThreads } from '../../store/threads';
 import { getCategories } from '../../store/categories';
 import './home.css';
@@ -24,6 +25,7 @@ const Home = () => {
     return (
         <>
             <h1>Welcome to Scouttit</h1>
+            <Link to='/create'>Create a thread!</Link>
             <div className="thread-container">
                 {allThreadsArr.map(thread => {
                     return (

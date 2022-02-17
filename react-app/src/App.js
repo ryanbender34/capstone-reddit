@@ -7,6 +7,8 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar-top/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import CategoryPage from './components/CategoryPage/category';
+import ThreadPage from './components/ThreadPage/threadpage'
+import Create from './components/Create/create';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
@@ -45,8 +47,14 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <Home></Home>
         </ProtectedRoute>
-        <ProtectedRoute path='/:threadTitle' exact={true} >
+        <ProtectedRoute path='/:category' exact={true} >
           <CategoryPage></CategoryPage>
+        </ProtectedRoute>
+        <ProtectedRoute path='/create' exact={true} >
+          <Create />
+        </ProtectedRoute>
+        <ProtectedRoute path='/:category/:threadId' exact={true} >
+          <ThreadPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

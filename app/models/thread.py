@@ -8,7 +8,7 @@ class Thread(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     title = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text)
     category_id = db.Column(db.Integer, db.ForeignKey( "categories.id"), nullable=False)
     views = db.Column(db.Integer, nullable=False, default=0)
     likes = db.Column(db.Integer, nullable=False, default=0)
@@ -37,13 +37,13 @@ class Thread(db.Model):
     def to_JSON(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
+            "userId": self.user_id,
             "title": self.title,
             "description": self.description,
-            "category_id": self.category_id,
+            "categoryId": self.category_id,
             "views": self.views,
             "likes": self.likes,
             "content": self.content,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "createdAt": self.created_at,
+            "updatedAt": self.updated_at
         }

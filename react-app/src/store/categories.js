@@ -1,5 +1,4 @@
 import { csrfFetch } from "../helpers";
-import catConverter from '../utils';
 
 const LOAD_CATEGORIES = "categories/LOAD_CATEGORIES";
 const SET_CATEGORY = "categories/SET_CATEGORY";
@@ -33,9 +32,11 @@ export const getCategories = function () {
 }
 
 export const selectCategory = function (name) {
-    const categoryId = catConverter(name);
+    let id;
+    // todo - make this a helper from utils.js
+    (name == 'basketball') ? id = 1 : (name == 'football') ? id = 2 : id = 'nope';
 	return async (dispatch) => {
-		const response = await csrfFetch(`/api/categories/${categoryId}`);
+		const response = await csrfFetch(`/api/categories/${id}`);
 
 		if (response.ok) {
 			const currentCat = await response.json();

@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import {  selectCategory } from '../../store/categories';
+import { useParams, useLocation } from 'react-router-dom';
+import { selectCategory } from '../../store/categories';
+import { getThreads } from '../../store/threads';
 import ThreadCard from '../ThreadCard/threadcard';
 import './category.css';
 
 const CategoryPage = () => {
-	const { catName } = useParams();
+	const {category} = useParams();
+    console.log(category, 'from url')
 	const dispatch = useDispatch();
+    const location = useLocation();
 
 	useEffect(() => {
-        dispatch(selectCategory(catName));
-	}, [dispatch]);
+        dispatch(selectCategory(category));
+        dispatch(getThreads());
+	}, [dispatch, location]);
 
 	const activeCat = useSelector(state => {
 		return state.categories.active
@@ -32,7 +36,7 @@ const CategoryPage = () => {
 
 	return (
         <>
-            <div className='thread-container'>
+            <div className='categoriespage-container'>
                 {curThreadsArr?.map((thread, index) => {
                     return (
                         <ThreadCard key ={thread.id} thread={thread}> </ThreadCard>

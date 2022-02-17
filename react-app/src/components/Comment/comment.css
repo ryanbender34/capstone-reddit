@@ -1,0 +1,119 @@
+.comment-header {
+    font-family: 'Cabin', sans-serif;
+}
+
+.comment-list {
+    display: block;
+    list-style: none;
+    text-align: left;
+    justify-content: space-between;
+    padding-left: 2vw;
+}
+
+.reply-list {
+    margin-left: 10px;
+    display: block;
+    list-style: none;
+    text-align: left;
+    justify-content: space-between;
+}
+
+.comment-username {
+    color: darkblue;
+    font-weight: bold;
+}
+
+.reply-username {
+    color: maroon;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+.reply-text > p {
+    padding-left: 7vw;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.comments-btns {
+    display: flex;
+    align-items: space-between;
+}
+
+.reply-btn {
+    display: flex;
+    align-items: space-between;
+}
+
+.reply-btns {
+    display: flex;
+    align-items: space-between;
+    padding-left: 6.5vw;
+}
+
+.comment-parent, .reply-parent {
+    list-style: none;
+}
+
+.show-reply {
+    display: block;
+    list-style: none;
+}
+
+.updated-tag {
+    color: gray;
+    font-size: 14px;
+    padding-left: 1vw;
+}
+
+.comment-count {
+    font-family: 'Cabin', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.new-comment-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-comment-button {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-top: 6px;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    color: whitesmoke;
+    text-shadow: 0 0 4px #030303;
+    background-color: #fda500;
+    border-radius: 6px;
+}
+.submit-comment-button:active {
+    box-shadow: 0 0 5px #030303;
+}
+
+.discard-comment-button {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-top: 6px;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    color: whitesmoke;
+    text-shadow: 0 0 4px #030303;
+    background-color: #3e3e3e;
+    border-radius: 6px;
+}
+.discard-comment-button:active {
+    box-shadow: 0 0 5px #030303;
+}
+
+.comments-text {
+    font-family: 'Open Sans', sans-serif;
+}

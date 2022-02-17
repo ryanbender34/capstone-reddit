@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import threads from './threads';
 import categories from './categories';
+import comments from './comments';
 
 const rootReducer = combineReducers({
   session,
   threads,
-  categories
+  categories,
+  comments
 });
 
 
