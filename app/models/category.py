@@ -24,5 +24,5 @@ class Category(db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
-            "image": self.image
+            "image": self.image,
         }

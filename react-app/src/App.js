@@ -6,6 +6,7 @@ import Home from './components/Home/home'
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar-top/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import CategoryPage from './components/CategoryPage/category';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
@@ -43,6 +44,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <Home></Home>
+        </ProtectedRoute>
+        <ProtectedRoute path='/:threadTitle' exact={true} >
+          <CategoryPage></CategoryPage>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
