@@ -138,7 +138,6 @@ export default function reducer(stateDotComments = {}, action) {
     let updatedState = { ...stateDotComments };
     switch (action.type) {
         case LOAD_COMMENTS:
-            console.log(action.comments, 'what are we trying to load')
             action.comments.forEach(comment => {
                 updatedState[comment.id] = comment;
             })

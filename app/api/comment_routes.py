@@ -17,12 +17,9 @@ def get_comments(thread_id):
     for comment in comments:
         for c, u in results:
             if (u.id == comment.author_id):
-                print('made it logic')
                 comment.username = u.username
 
-    print(comments[0].username, 'b4 json')
     comments = [comment.to_JSON() for comment in comments]
-    print(comments, 'afterjson')
     
         
     return jsonify(comments)

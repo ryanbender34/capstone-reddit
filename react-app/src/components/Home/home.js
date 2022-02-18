@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getThreads } from '../../store/threads';
 import { getCategories } from '../../store/categories';
+import catConverter from '../../utils';
 import './home.css';
 
 const Home = () => {
@@ -29,10 +30,12 @@ const Home = () => {
             <div className="thread-container">
                 {allThreadsArr.map(thread => {
                     return (
-                        <li key={`homeli-${thread.id}`} className={`homethread thread-${thread.id}}`}>
-                            <h2>{thread.title}</h2>
-                            <p>{thread.description}</p>
-                        </li>
+                        <Link key={`homelink-${thread.id}`} to={`${catConverter(thread.categoryId)}/${thread.id}`}>
+                            <li key={`homeli-${thread.id}`} className={`homethread thread-${thread.id}}`}>
+                                <h2>{thread.title}</h2>
+                                <p>{thread.description}</p>
+                            </li>
+                        </Link>
                     )
                 })}
             </div>
