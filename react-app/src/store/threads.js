@@ -43,8 +43,9 @@ export const getThreads = function () {
 	}
 }
 
-export const postThread = function ({ userId, title, description, categoryId, threadImageURL }) {
+export const postThread = function ({ userId, title, description, categoryId, content }) {
 	return async (dispatch) => {
+        console.log(userId, title, description, categoryId, content,  'data going to backend')
 		const response = await csrfFetch("/api/threads/", {
 			method: "POST",
 			headers: {
@@ -55,7 +56,7 @@ export const postThread = function ({ userId, title, description, categoryId, th
 				title,
 				description,
 				category_id: categoryId,
-				thread_image: threadImageURL
+                content
 			})
 		})
 

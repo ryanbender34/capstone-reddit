@@ -23,7 +23,6 @@ const Comment = () => {
 	let onlyCommentArr = [];
 	let onlyReplyArr = [];
 	commentArr.forEach(c => {
-        console.log(c.reply, c.threadId, threadId, 'huh')
 		if ((c.reply === null) && (c.threadId === threadId)) {
 			onlyCommentArr.push(c)
 		} else if (c.threadId === threadId) {
@@ -31,7 +30,6 @@ const Comment = () => {
 		}
 	})
 
-    console.log(commentArr, 'array of comments to load')
 
 	useEffect(() => {
 		dispatch(getComments({ threadId }))
@@ -186,7 +184,7 @@ const Comment = () => {
 			<br />
 			<div className="comment-container">
 				<div className="comment-count">Comments: {onlyCommentArr?.length}</div>
-				{onlyCommentArr?.map((comment, i) => {
+				{onlyCommentArr?.slice(0).reverse().map((comment, i) => {
 					return (
 						<div key={i}>
 							<hr key={`hrkey-${comment.id}`} />
@@ -223,7 +221,7 @@ const Comment = () => {
 								</div>
 							</li>
 							{(onlyCommentArr.length === (i + 1)) ? <hr className="botttom-hr" key="key" /> : null}
-							{onlyReplyArr?.map(reply => {
+							{onlyReplyArr?.slice(0).reverse().map(reply => {
 								if (reply.reply === comment.id) {
 									return (
 										<li key={`container-for-${reply.id}`} className={`reply-parent reply-parent-${reply.id}`}>

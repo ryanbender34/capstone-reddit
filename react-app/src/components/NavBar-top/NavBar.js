@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import LoginSignup from '../auth/LoginSignup';
 import './NavBar.css';
-import NavBarBottom from '../NavBar-bottom/NavBar-bottom';
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)

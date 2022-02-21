@@ -32,7 +32,6 @@ export const getComments = function ({ threadId }) {
 
         if (response.ok) {
             const comments = await response.json();
-            console.log(comments, 'got this as comments from BE')
             dispatch(loadComments(comments));
         } else if (response.status < 500) {
             const data = await response.json();
@@ -144,7 +143,7 @@ export default function reducer(stateDotComments = {}, action) {
             return updatedState;
         case CREATE_COMMENT:
         case EDIT_COMMENT:
-            console.log('properly made it to the edit state part')
+            // console.log('properly made it to the edit state part')
             updatedState[action.comment.id] = action.comment;
             return updatedState;
         case TRASH_COMMENT:

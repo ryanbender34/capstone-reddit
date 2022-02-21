@@ -8,7 +8,6 @@ import './category.css';
 
 const CategoryPage = () => {
 	const {category} = useParams();
-    console.log(category, 'from url')
 	const dispatch = useDispatch();
     const location = useLocation();
 
@@ -16,10 +15,6 @@ const CategoryPage = () => {
         dispatch(selectCategory(category));
         dispatch(getThreads());
 	}, [dispatch, location]);
-
-	const activeCat = useSelector(state => {
-		return state.categories.active
-	});
 
     const curThreadsArr = useSelector(state => {
         return state.categories.active?.threads

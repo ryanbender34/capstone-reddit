@@ -34,7 +34,7 @@ export const getCategories = function () {
 export const selectCategory = function (name) {
     let id;
     // todo - make this a helper from utils.js
-    (name == 'basketball') ? id = 1 : (name == 'football') ? id = 2 : id = 'nope';
+    (name === 'basketball') ? id = 1 : (name === 'football') ? id = 2 : id = 'nope';
 	return async (dispatch) => {
 		const response = await csrfFetch(`/api/categories/${id}`);
 

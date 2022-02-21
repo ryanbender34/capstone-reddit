@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getThreads } from '../../store/threads';
 import { getCategories } from '../../store/categories';
-import catConverter from '../../utils';
+import ThreadCard from '../ThreadCard/threadcard';
 import './home.css';
+import Create from '../Create/create';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -26,16 +26,11 @@ const Home = () => {
     return (
         <>
             <h1>Welcome to Scouttit</h1>
-            <Link to='/create'>Create a thread!</Link>
+            <Create></Create>
             <div className="thread-container">
                 {allThreadsArr.map(thread => {
                     return (
-                        <Link key={`homelink-${thread.id}`} to={`${catConverter(thread.categoryId)}/${thread.id}`}>
-                            <li key={`homeli-${thread.id}`} className={`homethread thread-${thread.id}}`}>
-                                <h2>{thread.title}</h2>
-                                <p>{thread.description}</p>
-                            </li>
-                        </Link>
+                        <ThreadCard key ={thread.id} thread={thread}></ThreadCard>
                     )
                 })}
             </div>

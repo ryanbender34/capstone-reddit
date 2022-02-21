@@ -28,7 +28,6 @@ def get_comments(thread_id):
 @comment_routes.route("/", methods=["POST"])
 @login_required
 def post_comment():
-    print('made it backend')
     comment = Comment(
         author_id=request.json["author_id"],
         thread_id=request.json["thread_id"],
@@ -38,7 +37,6 @@ def post_comment():
         created_at=datetime.now(),
         updated_at=datetime.now())
 
-    print(comment,'commentthis')
 
     db.session.add(comment)
     db.session.commit()
@@ -58,7 +56,6 @@ def put_comment():
         "author_id": request.json["author_id"],
         "thread_id": request.json["thread_id"],
         "reply": request.json["reply"],
-        "type": request.json["type"],
         "content": request.json["content"],
         "vote": request.json["vote"],
         "updated_at": datetime.now()
