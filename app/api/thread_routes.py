@@ -29,3 +29,34 @@ def post_thread():
         return thread.to_JSON()
     except:
         return {'errors': 'post invalid'}, 401
+
+
+@thread_routes.route('/', methods=["PUT"])
+@login_required
+def put_thread():
+    id = request.json["id"]
+    db.session.query(Thread).filter(Thread.id == id).update({
+        "title":request.json["title"],
+        "description":request.json["description"],
+        "content":request.json["content"],
+        "updated_at":datetime.now()
+    }, synchronize_session="fetch")
+    db.session.commit()
+    thread = Thread.query.get(id)
+    if thread:
+        return thread.to_JSON()
+    else:
+        return make_response({"errors": ["Error during edit"]})
+
+@thread_routes.route('/', methods=["DELETE"])
+@login_required
+def delete_thread():
+    id = request.json["id"]
+    thread = Thread.query.get(id)
+    if thread:
+        db.session.delete(thread)
+        # todo - delete all comments associated with a thread here
+        db.session.commit()
+        return {'errors': False}
+    else:
+        return make_response({"errors": ["there was an error deleting thread"]})

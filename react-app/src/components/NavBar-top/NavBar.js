@@ -11,18 +11,16 @@ const NavBar = () => {
     <div>
       <nav>
         <ul className='site-options'>
-          <li className="home" >
+          <li className="home topnav" >
             <NavLink to='/'><img className="logo" src='https://patch.com/img/cdn/users/22867396/2015/11/raw/2015115642a47f57fa7.jpeg' alt='scouttit-logo' style={{ height: '50px', padding: '0 10px 0 0' }} /></NavLink>
             <NavLink to='/'>Scouttit</NavLink>
           </li>
-          <li>
-          </li>
-          <li>
+          <li className='topnav'>
             <NavLink to='/basketball' exact={true}>
               Basketball
             </NavLink>
           </li>
-          <li>
+          <li className='topnav'>
             <NavLink to='/football' exact={true}>
               Football
             </NavLink>
@@ -34,8 +32,6 @@ const NavBar = () => {
           {(user) ? <LogoutButton /> : <LoginSignup />}
         </ul>
       </nav>
-      {/* only want to render the bottom when we are in a category */}
-      {/* <NavBarBottom /> */}
     </div>
   );
 }

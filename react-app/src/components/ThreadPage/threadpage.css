@@ -1,0 +1,11 @@
+.delete-thread {
+    color: black;
+}
+
+.deletepopup {
+    border: 1px solid red;
+}
+
+li {
+    list-style: none;
+}

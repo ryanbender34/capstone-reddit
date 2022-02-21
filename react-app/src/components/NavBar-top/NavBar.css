@@ -19,6 +19,11 @@ nav {
 
 }
 
+.topnav:hover {
+    font-weight: bold;
+    color: red;
+}
+
 a {
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;

@@ -75,7 +75,7 @@ export const postThread = function ({ userId, title, description, categoryId, co
 	}
 }
 
-export const putThread = function ({ threadId, title, description, categoryId, threadImageURL }) {
+export const putThread = function ({ threadId, title, description, content }) {
 	return async (dispatch) => {
 		const response = await csrfFetch("/api/threads/", {
 			method: "PUT",
@@ -86,8 +86,7 @@ export const putThread = function ({ threadId, title, description, categoryId, t
 				id: threadId,
 				title,
 				description,
-				category_id: categoryId,
-				thread_image: threadImageURL
+				content
 			})
 		})
 

@@ -25,7 +25,6 @@ const Home = () => {
 
     return (
         <>
-            <h1>Welcome to Scouttit</h1>
             <Create></Create>
             <div className="thread-container">
                 {allThreadsArr.map(thread => {
