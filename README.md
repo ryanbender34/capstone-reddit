@@ -1,6 +1,7 @@
 ### Scouttit 
 
-Live Site | Wiki 
+[Live Site] (https://scouttit.herokuapp.com/) | [Wiki] (https://github.com/ryanbender34/scouttit/wiki)
+
 
 Scouttit is a reddit inspired website where users can create, update, and delete threads, create, update and delete comments on existing threads, and create update and delete replies to comments in existing threads. This website was designed as a part of App Academy's 24 week Full Stack software engineering bootcamp program. 
 
