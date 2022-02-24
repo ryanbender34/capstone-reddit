@@ -35,4 +35,4 @@ Getting Started
   `npm start`
   
 Developer
-Ryan Bender | LinkedIn
+Ryan Bender | [LinkedIn](https://www.linkedin.com/in/ryan-bender-0b5b16127/)
