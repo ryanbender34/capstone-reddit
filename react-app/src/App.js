@@ -7,8 +7,8 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar-top/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import CategoryPage from './components/CategoryPage/category';
-import ThreadPage from './components/ThreadPage/threadpage'
-import Create from './components/Create/create';
+import ThreadPage from './components/ThreadPage/threadpage';
+import About from './components/About/about';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
@@ -41,21 +41,21 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
+        <Route path='/about' exact={true} >
+          <About />
+        </Route>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true} >
           <Home></Home>
-        </ProtectedRoute>
-        <ProtectedRoute path='/:category' exact={true} >
+        </Route>
+        <Route path='/:category' exact={true} >
           <CategoryPage></CategoryPage>
-        </ProtectedRoute>
-        <ProtectedRoute path='/create' exact={true} >
-          <Create />
-        </ProtectedRoute>
-        <ProtectedRoute path='/:category/:threadId' exact={true} >
+        </Route>
+        <Route path='/:category/:threadId' exact={true} >
           <ThreadPage />
-        </ProtectedRoute>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

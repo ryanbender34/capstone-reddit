@@ -7,6 +7,7 @@ import './create.css';
 
 const Create = () => {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.session?.user)
     const [createStatus, setCreateStatus] = useState(false)
     const userId = useSelector(state => state.session.user?.id)
     const [title, setTitle] = useState('');
@@ -34,13 +35,13 @@ const Create = () => {
 
     return (
         <>
-            <button className='threadcreatebtn' hidden={createStatus} onClick={() => setCreateStatus(true)}>Create new thread</button>
+            <button className='threadcreatebtn' hidden={createStatus} onClick={user ? () => setCreateStatus(true) : () => setErrors(['Please log in to start a thread'])}>Create new thread</button>
+            {(errors.length > 0) && errors?.map((err, i) => {
+                return <p key={i} className='anerror' >{err}</p>
+            })}
             {createStatus &&
             <div className='threadform-container'>
                 <div className="errors-container">
-                    {(errors.length > 0) && errors?.map((err, i) => {
-                        return <p key={i} className='anerror' >{err}</p>
-                    })}
                 </div>
                 <form id='threadform' action='/' onSubmit={handleSubmit}>
                     <input type="hidden" name="csrf_token" value={Cookies.get('XSRF-TOKEN')} />

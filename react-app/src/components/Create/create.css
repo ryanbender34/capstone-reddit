@@ -1,12 +1,11 @@
 .threadform-container {
-    margin: 1% 5% 1% 17%;
+    padding: 1% 0 1% 4%;
 
 }
 
 #threadform {
     display: flex;
     flex-direction: column;
-    width: 50%;
     min-width: 100px;
 }
 
@@ -17,8 +16,12 @@
 }
 
 .anerror {
-    margin: 0;
-    padding-top: 8px;
+    padding: 1% 0 1% 4%;
+    color: red;
+}
+
+.threadcreatebtn {
+    padding: 1% 0 1% 4%;
 }
 
 

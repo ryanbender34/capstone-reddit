@@ -51,7 +51,6 @@ const ThreadPage = () => {
         const title = document.querySelector(".thread-title").innerHTML
         const description = document.querySelector(".thread-description").innerHTML
         const content = document.querySelector(".thread-content").innerHTML
-        console.log(title, description, content, 'is this the user interface text')
         // todo - add current vote here
 		let data = { threadId, title, description, content }
 		dispatch(putThread(data))
@@ -132,7 +131,7 @@ const ThreadPage = () => {
             { deletePopUp &&
             <div className="deletepopup">
                 <h2 className='delete-title'>Thread: <span className='delete-thread-title'>{selectedThread?.title}</span></h2>
-                <h3 className='delete-header'>Are you sure you want to delete this project?</h3>
+                <h3 className='delete-header'>Are you sure you want to delete this thread?</h3>
                 <div className='delete-options'>
                     <button className='option-button confirm-delete' onClick={(e) => trashThread(e)}>DELETE</button>
                     <button className='option-button cancel' onClick={() => setDeletePopUp(false)}>CANCEL</button>

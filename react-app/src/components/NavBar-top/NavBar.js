@@ -13,7 +13,8 @@ const NavBar = () => {
         <ul className='site-options'>
           <li className="home topnav" >
             <NavLink to='/'><img className="logo" src='https://patch.com/img/cdn/users/22867396/2015/11/raw/2015115642a47f57fa7.jpeg' alt='scouttit-logo' style={{ height: '50px', padding: '0 10px 0 0' }} /></NavLink>
-            <NavLink to='/'>Scouttit</NavLink>
+            <NavLink className='scouttit-link' to='/'>Scouttit</NavLink>
+            <NavLink className='about-link' to='/about'>About</NavLink>
           </li>
           <li className='topnav'>
             <NavLink to='/basketball' exact={true}>
@@ -27,7 +28,8 @@ const NavBar = () => {
           </li>
         </ul>
         <ul className='user-options'>
-          {(user) ? <NavLink className='logged-in' to={`/users/${user.id}`}>Welcome, {user.username}!</NavLink> : ''}
+          {/* {(user) ? <NavLink className='logged-in' to={`/users/${user.id}`}>Welcome, {user.username}!</NavLink> : ''} */}
+          {(user) ? <div>Welcome, {user.username}</div> : ''}
           {(user) ? <div className='logged-in'>|</div> : ''}
           {(user) ? <LogoutButton /> : <LoginSignup />}
         </ul>

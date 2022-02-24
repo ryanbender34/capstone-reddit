@@ -38,7 +38,7 @@
 }
 
 .auth-btn {
-    background-color: #fda500;
+    background-color: lightblue;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 6px;
@@ -48,7 +48,7 @@
     border-radius: 6px;
     font-size: 20px;
     font-weight: bold;
-    color: whitesmoke;
+    color: black;
     box-shadow: 0 0 1px #030303;
     /* text-shadow: 0 0 4px #030303; */
 }

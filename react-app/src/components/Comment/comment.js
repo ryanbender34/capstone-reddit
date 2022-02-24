@@ -81,13 +81,7 @@ const Comment = () => {
 		})
 	}
 	
-	// .catch(async (res) => {
-	// 	await res.json();
-	// })
-// if (submittedComment && !submittedComment.errors) {
-// 	
-// 	return
-// } 
+
 	const handleReplySubmit = async (e) => {
 		e.preventDefault()
 		let authorId = userId;
@@ -177,7 +171,7 @@ const Comment = () => {
 	return (
 		<section className="add-comment">
 			<h1 className='comment-header'>Leave a comment...</h1>
-			<button onClick={user ? () => setShowCommentForm(true) : null}>Create a Comment</button>
+			<button onClick={user ? () => setShowCommentForm(true) : () => setErrors(['Please log in to leave a comment'])}>Create a Comment</button>
 			<br />
 			<div className="errors-container">
 				{(errors.length > 0) && errors?.map((err, i) => {

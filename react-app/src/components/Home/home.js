@@ -25,6 +25,7 @@ const Home = () => {
 
     return (
         <>
+        <div className="home-container">
             <div className="thread-container">
             <Create></Create>
                 {allThreadsArr.map(thread => {
@@ -33,6 +34,7 @@ const Home = () => {
                     )
                 })}
             </div>
+        </div>
         </>
     )
 

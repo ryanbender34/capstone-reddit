@@ -60,16 +60,12 @@ export const postComment = function ({ authorId, threadId, reply, content, vote 
             }),
         })
 
-
-        console.log('am i in the store')
         if (response.ok) {
             const comment = await response.json();
             dispatch(createComment(comment));
             return comment
         } else if (response.status < 500) {
-            console.log('am i in the right res section (<500)')
             const data = await response.json();
-            console.log(data, 'this is the data from BE in a 401')
             if (data.errors) {
                 return data;
             }
@@ -144,7 +140,6 @@ export default function reducer(stateDotComments = {}, action) {
             return updatedState;
         case CREATE_COMMENT:
         case EDIT_COMMENT:
-            // console.log('properly made it to the edit state part')
             updatedState[action.comment.id] = action.comment;
             return updatedState;
         case TRASH_COMMENT:

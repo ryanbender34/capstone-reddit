@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import React, { useState} from 'react';
 import catConverter from '../../utils';
 import './threadcard.css';
 
 const ThreadCard = ({ thread }) => {
+    const [vote, setVote] = useState(0)
     const dateConverter = (comment) => {
 		const currentDate = new Date();
 		const commentDate = Date.parse(comment)
@@ -18,20 +20,27 @@ const ThreadCard = ({ thread }) => {
 		var mDisplay = ((m > 0) && (h === 0)) ? m + (m === 1 ? " minute " : " minutes ") : "";
 		var sDisplay = ((s > 0) && ((m === 0))) ? s + (s === 1 ? " second" : " seconds") : "";
 		return dDisplay + hDisplay + mDisplay + sDisplay;
-
 	}
+
+
 	return (
         <>
-            <Link className="thread-row" to={`${catConverter(thread.categoryId)}/${thread.id}`}>
+            <div className="thread-row" >
                 <div className='thread-column-1'>
-                    Vote
+                    {/* todo - make upvote/downvote icons */}
+                    {/* <i class="icon icon-upvote _2Jxk822qXs4DaXwsN7yyHA"></i> */}
+                    <div class="vote roundrect">
+                        <div class="increment up" onClick={() => setVote(thread.likes + 1)}>&#8593;</div>
+                        <div className='vote-counter'>{vote}</div>
+                        <div class="increment down" onClick={() => setVote(thread.likes - 1)}>&#8595;</div>
+                    </div>
                 </div>
-                <div className='thread-column-2'>
+                <Link className='thread-column-2' to={`${catConverter(thread.categoryId)}/${thread.id}`}>
                     <p className='thread-topline'>Posted by {thread.username} {dateConverter(thread.updatedAt)} ago</p>
                     <h3 className='thread-header-text'> {thread.title}</h3>
-                    <p className='thread-body-text'>{thread.content}</p>
-                </div>
-            </Link>
+                    <p className='thread-body-text'>{thread.description}</p>
+                </Link>
+            </div>
         </>
 	)
 }

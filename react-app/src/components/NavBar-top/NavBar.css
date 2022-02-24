@@ -92,6 +92,17 @@ button:hover {
     animation-name: bounce;
 }
 
+.scouttit-link {
+    padding-right: 10px;
+}
+
+.about-link {
+    padding-left: 1%;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
 @keyframes bounce {
     0%, 100%, 20%, 50%, 80% {
         -webkit-transform: translateY(0);

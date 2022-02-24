@@ -1,8 +1,21 @@
-.homethread {
-    list-style: none;
+.home-container {
+    display: flex;
 }
 
-.threadcreatebtn {
-    margin: 1% 5% 1% 17%;
+.thread-container {
+    width: 50%;
 }
+
+.about-link {
+    color: black;
+    padding: 2px;
+    font-size: 13px;
+}
+
+.about-link:hover {
+font-weight: bold;
+}
+
+
+
 
