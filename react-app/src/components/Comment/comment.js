@@ -16,8 +16,7 @@ const Comment = () => {
 	const [replyValue, setReplyValue] = useState(null);
 	const [editable, setEditable] = useState(false);
 	const [comment, setComment] = useState('');
-	// const [errors, setErrors] = useState([]); //TODO #186 display comment errors
-    // todo - make sure keying into state like this is working 
+	const [errors, setErrors] = useState([]); 
 	let commentObject = useSelector(state => state.comments)
 	let commentArr = Object.values(commentObject)
 	let onlyCommentArr = [];
@@ -56,29 +55,39 @@ const Comment = () => {
 		e.preventDefault();
 		setShowCommentForm(false);
 		setShowReplyForm(false);
+		setErrors([])
+		setComment('')
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+		setShowCommentForm(false);
 		let authorId = userId;
 		let reply = null;
 		let content = comment;
         // just remove vote b/c there is adefault value set? 
         let vote = 0;
 		let newComment = { authorId, threadId, reply, content, vote }
-        console.log(newComment, 'react end newC')
-		let submittedComment = dispatch(postComment(newComment))
-			.catch(async (res) => {
-				await res.json();
-				// const data = await res.json();
-				// if (data && data.errors) setErrors(data.errors)
-			})
-		if (submittedComment) {
-			setShowCommentForm(false);
-			setComment('');
-		}
-	}
+		
+		await dispatch(postComment(newComment))
+		.catch(async (res) => {
+			const data = await res.json()
+			if (data && data.errors) {
+				setErrors(data.errors)
+				setShowCommentForm(true)
+				// todo - how do I get the comment to reset after I successfully post a comment
+			} else setComment('')
 
+		})
+	}
+	
+	// .catch(async (res) => {
+	// 	await res.json();
+	// })
+// if (submittedComment && !submittedComment.errors) {
+// 	
+// 	return
+// } 
 	const handleReplySubmit = async (e) => {
 		e.preventDefault()
 		let authorId = userId;
@@ -170,10 +179,15 @@ const Comment = () => {
 			<h1 className='comment-header'>Leave a comment...</h1>
 			<button onClick={user ? () => setShowCommentForm(true) : null}>Create a Comment</button>
 			<br />
+			<div className="errors-container">
+				{(errors.length > 0) && errors?.map((err, i) => {
+					return <p key={i} className='anerror' >{err}</p>
+				})}
+			</div>
 			{showCommentForm &&
 				<>
 					<form className='new-comment-container' onSubmit={handleSubmit}>
-						<input type="text" placeholder="add your comment..." onChange={(e) => setComment(e.target.value)} required></input>
+						<input type="text" className='create-comment-input' value={comment} placeholder="add your comment..." onChange={(e) => setComment(e.target.value)} required></input>
 						<div className='comment-container-buttons'>
 							<button className='submit-comment-button' type="submit">Post Comment</button>
 							<button className='discard-comment-button' type="button" onClick={handleCancelClick}>Nevermind</button>

@@ -24,7 +24,6 @@ def get_threads():
 @thread_routes.route('/', methods=["POST"])
 @login_required
 def post_thread():
-    print(request.json['title'], 'here is the title from the request')
     form = ThreadForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():

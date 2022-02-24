@@ -2,8 +2,19 @@ from datetime import datetime
 from flask import Blueprint, jsonify, make_response, request
 from flask_login import login_required
 from app.models import db, Comment, User
+from app.forms import CommentForm
 
 comment_routes = Blueprint('comments', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 
 @comment_routes.route("/<int:thread_id>", methods=["GET"])
@@ -27,24 +38,26 @@ def get_comments(thread_id):
 @comment_routes.route("/", methods=["POST"])
 @login_required
 def post_comment():
-    comment = Comment(
-        author_id=request.json["author_id"],
-        thread_id=request.json["thread_id"],
-        reply=request.json["reply"],
-        content=request.json["content"],
-        vote=request.json["vote"],
-        created_at=datetime.now(),
-        updated_at=datetime.now())
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = Comment(
+            author_id=request.json["author_id"],
+            thread_id=request.json["thread_id"],
+            reply=request.json["reply"],
+            content=request.json["content"],
+            created_at=datetime.now(),
+            updated_at=datetime.now())
 
+        db.session.add(comment)
+        db.session.commit()
 
-    db.session.add(comment)
-    db.session.commit()
+        result = db.session.query(Comment, User).select_from(Comment).join(User).filter(Comment.id == comment.id).all()
 
-    result = db.session.query(Comment, User).select_from(Comment).join(User).filter(Comment.id == comment.id).all()
+        comment.username = result[0][1].username
 
-    comment.username = result[0][1].username
-
-    return comment.to_JSON()
+        return comment.to_JSON()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @comment_routes.route('/', methods=["PUT"])

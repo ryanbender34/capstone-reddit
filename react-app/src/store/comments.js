@@ -47,7 +47,6 @@ export const getComments = function ({ threadId }) {
 
 export const postComment = function ({ authorId, threadId, reply, content, vote }) {
     return async (dispatch) => {
-        // console.log('right before sending', authorId, threadId, reply, content, vote)
         const response = await csrfFetch("/api/comments/", {
             method: "POST",
             headers: {
@@ -58,19 +57,21 @@ export const postComment = function ({ authorId, threadId, reply, content, vote 
                 thread_id: threadId,
                 reply,
                 content,
-                vote
             }),
         })
 
 
+        console.log('am i in the store')
         if (response.ok) {
             const comment = await response.json();
-            console.log('comment from BE after POST', comment)
             dispatch(createComment(comment));
+            return comment
         } else if (response.status < 500) {
+            console.log('am i in the right res section (<500)')
             const data = await response.json();
+            console.log(data, 'this is the data from BE in a 401')
             if (data.errors) {
-                return data.errors;
+                return data;
             }
         } else {
             return ['An error occurred. Please try again.'];

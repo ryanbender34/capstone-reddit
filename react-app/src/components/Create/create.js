@@ -22,21 +22,15 @@ const Create = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let newThread = { userId, title, description, categoryId, content }
-        // if (title && (title.length > 50)) errors.push("Project title limited to 50 characters.");
 
-        // if (errors.length === 0) {
+        // why does await allow me to render my errors 
         const data = await dispatch(postThread(newThread))
         if (data && data.errors) {
             setErrors(data.errors)
             return
         } 
-        // }
         setCreateStatus(false)
     }
-
-    // const titleValidation = (e) => {
-    //     (e.target.value.length > 50) ? setErrors("Title must be no greater than 50 characters") : setErrors([]);
-    // }
 
     return (
         <>
