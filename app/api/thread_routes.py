@@ -2,8 +2,19 @@ from datetime import datetime
 from flask import Blueprint, jsonify, make_response, request
 from flask_login import login_required
 from app.models import db, Thread
+from app.forms import ThreadForm
 
 thread_routes = Blueprint("threads", __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @thread_routes.route("/", methods=["GET"])
 def get_threads():
@@ -13,22 +24,24 @@ def get_threads():
 @thread_routes.route('/', methods=["POST"])
 @login_required
 def post_thread():
-    thread = Thread(
-        user_id=request.json["user_id"],
-        title=request.json["title"],
-        description=request.json["description"],
-        category_id=request.json["category_id"],
-        views=0,
-        likes=0,
-        content=request.json["content"],
-        created_at=datetime.now(),
-        updated_at=datetime.now())
-    try:
+    print(request.json['title'], 'here is the title from the request')
+    form = ThreadForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        thread = Thread(
+            user_id=request.json["user_id"],
+            title=request.json["title"],
+            description=request.json["description"],
+            category_id=request.json["category_id"],
+            views=0,
+            likes=0,
+            content=request.json["content"],
+            created_at=datetime.now(),
+            updated_at=datetime.now())
         db.session.add(thread)
         db.session.commit()
         return thread.to_JSON()
-    except:
-        return {'errors': 'post invalid'}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @thread_routes.route('/', methods=["PUT"])

@@ -1,12 +1,12 @@
 .login-body {
-    background-image: url('../../images/splash/splashauth1.jpg');
+    /* background-image: url('../../images/splash/splashauth1.jpg'); */
     background-size: cover;
     margin-bottom: -14px;
     height: 100vh;
 }
 
 .signup-body {
-    background-image: url('../../images/splash/splashauth2.jpg');
+    /* background-image: url('../../images/splash/splashauth2.jpg'); */
     background-size: cover;
     margin-bottom: -14px;
     height: 100vh;
@@ -50,7 +50,7 @@
     font-weight: bold;
     color: whitesmoke;
     box-shadow: 0 0 1px #030303;
-    text-shadow: 0 0 4px #030303;
+    /* text-shadow: 0 0 4px #030303; */
 }
 .auth-btn:active {
     box-shadow: 0 0 5px #030303;
@@ -82,11 +82,19 @@
 }
 
 .auth-link {
-    color: #030303;
+    color: black;
     padding-bottom: 2px;
     border-bottom: 1.5px solid #030303;
 }
 .auth-link:hover {
 	cursor: pointer;
     text-shadow: 0 0 1px #030303;
+}
+
+.new-link {
+    color: black;
+}
+
+.signup-link {
+    color: black;
 }

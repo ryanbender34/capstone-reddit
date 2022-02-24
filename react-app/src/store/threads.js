@@ -45,8 +45,7 @@ export const getThreads = function () {
 
 export const postThread = function ({ userId, title, description, categoryId, content }) {
 	return async (dispatch) => {
-        console.log(userId, title, description, categoryId, content,  'data going to backend')
-		const response = await csrfFetch("/api/threads/", {
+		const response = await fetch("/api/threads/", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -59,7 +58,6 @@ export const postThread = function ({ userId, title, description, categoryId, co
                 content
 			})
 		})
-
 		if (response.ok) {
 			const thread = await response.json();
 			dispatch(createThread(thread));
@@ -67,7 +65,7 @@ export const postThread = function ({ userId, title, description, categoryId, co
 		} else if (response.status < 500) {
 			const data = await response.json();
 			if (data.errors) {
-				return data.errors;
+				return data;
 			}
 		} else {
 			return ['An error occured. Please try again.'];

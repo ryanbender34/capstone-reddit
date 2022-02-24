@@ -16,12 +16,6 @@ nav {
 .home {
     display: flex;
     align-items: center;
-
-}
-
-.topnav:hover {
-    font-weight: bold;
-    color: red;
 }
 
 a {
@@ -30,7 +24,7 @@ a {
     color: whitesmoke;
 }
 
-a:hover {
+li > a:hover, ul > a:hover {
     font-weight: bold;
 }
 

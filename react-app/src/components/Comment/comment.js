@@ -195,7 +195,7 @@ const Comment = () => {
 										<p className={`comment-body comment-body-${comment.id}`} id={comment.id} suppressContentEditableWarning={true} onChange={(e) => setComment(e.target.value)}>{comment.content}</p>
 									</div>
 									<div className="comments-btns">
-										<button className="reply-btn" hidden={(editable)} value={comment.id} onClick={(e) => activeReply(e, comment.id)}>Reply</button>
+										<button className="reply-btn" value={comment.id} onClick={(e) => activeReply(e, comment.id)}>Reply</button>
 										<button hidden={(!(userId === comment.authorId) || (editable))} onClick={(e) => activeEdit(e, comment.id)}>Edit</button>
 										<button hidden={(!(userId === comment.authorId) || editable)} onClick={() => removeComment(comment.id)}>Delete</button>
 									</div>
@@ -232,17 +232,17 @@ const Comment = () => {
 												</div>
 												<div className="reply-btns">
 													<button hidden={(!(userId === reply.authorId) || (editable))} onClick={(e) => activeEditReply(e, reply.id)}>Edit</button>
-													<button hidden={!(userId === reply.authorId)} onClick={() => removeComment(reply.id)}>Delete</button>
+													<button hidden={(!(userId === reply.authorId) || (editable))} onClick={() => removeComment(reply.id)}>Delete</button>
 												</div>
+												{(editable === reply.id) &&
+													<div key={`editbtns-${reply.id}`} hidden={(!(userId === reply.authorId))}>
+														<form id={reply.id} className="reply-btns" onSubmit={e => saveReplyUpdate(e, reply.id, reply.reply)}>
+															<button type="submit">Save</button>
+															<button type="button" onClick={e => cancelReplyUpdate(e, reply.id)}>Cancel</button>
+														</form>
+													</div>
+												}
 											</div>
-											{(editable === reply.id) &&
-												<div key={`editbtns-${reply.id}`} hidden={(!(userId === reply.authorId))}>
-													<form id={reply.id} onSubmit={e => saveReplyUpdate(e, reply.id, reply.reply)}>
-														<button type="submit">Save</button>
-														<button type="button" onClick={e => cancelReplyUpdate(e, reply.id)}>Cancel</button>
-													</form>
-												</div>
-											}
 										</li>
 									)
 								} else {

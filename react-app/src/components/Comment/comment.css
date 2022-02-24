@@ -1,5 +1,13 @@
+.add-comment {
+    padding: 0 0 0 2.09%;
+}
+
 .comment-header {
     font-family: 'Cabin', sans-serif;
+}
+
+.create-comment-btn {
+    padding: 0;
 }
 
 .comment-list {

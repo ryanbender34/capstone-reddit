@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import { demoLogin } from '../../store/session';
+import './auth.css';
+
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -38,7 +40,7 @@ const LoginForm = () => {
         <input type="hidden" name="csrf_token" value={Cookies.get('XSRF-TOKEN')} />
         <div>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div className="auth-errors" key={ind}>{error}</div>
           ))}
         </div>
           <label htmlFor='email'>Email</label>
@@ -59,7 +61,7 @@ const LoginForm = () => {
           />
           <button type='submit'>Login</button>
           <div className="auth-btn">
-            <p>New to Scouttit?<Link to='/sign-up'>Sign Up!</Link></p>
+            <p className="new-link">New to Scouttit?  <Link to='/sign-up' className='signup-link' ><span className='auth-link'>Sign Up!</span></Link></p>
             <p><span className='auth-link' onClick={e => dispatch(demoLogin())}>Demo User</span></p>
         </div>
       </form>

@@ -32,6 +32,7 @@ const CategoryPage = () => {
 	return (
         <>
             <div className='categoriespage-container'>
+                <h1 className="cat-header">s/{category}</h1>
                 {curThreadsArr?.map((thread, index) => {
                     return (
                         <ThreadCard key ={thread.id} thread={thread}> </ThreadCard>

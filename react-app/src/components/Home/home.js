@@ -25,8 +25,8 @@ const Home = () => {
 
     return (
         <>
-            <Create></Create>
             <div className="thread-container">
+            <Create></Create>
                 {allThreadsArr.map(thread => {
                     return (
                         <ThreadCard key ={thread.id} thread={thread}></ThreadCard>

@@ -1,11 +1,117 @@
+.thread-main-content {
+    /* border-left: 3px double #ddd; */
+    /* margin: 0 0 0 10%; */
+    padding: 25px 0 25px 2.09%;
+    width: 76.1%;
+}
+
+.thread-header-section {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.thread-info {
+    color: #555;
+    font-variant: small-caps;
+    padding: 2px 2.8% 0 0;
+}
+
 .delete-thread {
     color: black;
 }
 
 .deletepopup {
-    border: 1px solid red;
+    margin: 0 0 0 2.09%;
+    position: relative;
+    top: -25px;
+    max-width: 400px;
 }
 
 li {
     list-style: none;
+}
+
+.thread-title {
+    color: #900;
+    font-size: 2.7em;
+    font-style: italic;
+    font-weight: 400;
+    min-height: 1em;
+    padding: 1em 0 0 0;
+    margin: 0;
+}
+
+.date-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 16px;
+    font-style: italic;
+    text-align: center;
+    padding: 0 5% 10px 0;
+    margin: 0;
+}
+
+.thread-date-column3 {
+    display: flex;
+}
+
+.thread-day {
+    font-size: 48px;
+    padding: 0px;
+    margin: 0;
+}
+
+.thread-weekday, .thread-month, .thread-year {
+    padding: 0px;
+    margin: 0;
+}
+
+.thread-weekday {
+    font-family: "Adobe Garamond Pro",Garamond,Palatino,"Palatino Linotype",Times,"Times New Roman",Georgia,serif;
+    font-size: 1.5em;
+}
+
+.thread-month{
+    padding-right: 4px;
+}
+
+.thread-description {
+    color: #333;
+    font-style: italic;
+    font-size: 20px;
+    padding: 15px 2.8% 1% 2%;
+    line-height: 20px;
+    margin: 0;
+}
+
+.thread-content {
+    color: #333;
+    font-size: 14px;
+    padding: 15px 2.8% 4% 2%;
+    line-height: 20px;
+    margin: 0;
+}
+
+.delete-title, .delete-header, .delete-options {
+    margin: 0;
+    padding-top: 1%;
+}
+
+.delete-header {
+    font-weight: 100;
+}
+
+.option-button {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.delete-thread-title {
+    color: #900;
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }

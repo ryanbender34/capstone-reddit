@@ -1,7 +1,25 @@
+.threadform-container {
+    margin: 1% 5% 1% 17%;
+
+}
+
 #threadform {
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin: auto;
+    min-width: 100px;
 }
+
+.errors-container {
+    color: red;
+    display: flex;
+    flex-direction: column;
+}
+
+.anerror {
+    margin: 0;
+    padding-top: 8px;
+}
+
+
 

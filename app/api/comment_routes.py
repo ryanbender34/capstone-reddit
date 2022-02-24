@@ -8,7 +8,6 @@ comment_routes = Blueprint('comments', __name__)
 
 @comment_routes.route("/<int:thread_id>", methods=["GET"])
 def get_comments(thread_id):
-    print('made it to backend')
     comments = [comment for comment in Comment.query.filter(
         Comment.thread_id == thread_id).all()]
 

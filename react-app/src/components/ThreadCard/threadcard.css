@@ -1,0 +1,46 @@
+.thread-topline {
+    color: rgb(116, 115, 115);
+    font-size: .7rem;
+    margin: 0;
+    padding-bottom: .2rem;
+}
+
+.thread-row {
+    width: 37%;
+    display: flex;
+    flex-direction: row;
+    margin: 1% 5% 1% 17%;
+}
+
+.thread-column-1 {
+    background-color: lightgrey;
+} 
+
+.thread-column-2 {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4px;
+}
+
+.thread-row:hover {
+    border: 1px solid rgb(27, 27, 173);
+    background-color: rgb(247, 247, 136);
+}
+
+.thread-header-text {
+    color: darkblue;
+    margin: 0;
+
+}
+
+.thread-body-text {
+    color: black;
+}
+
+a:hover {
+    font-weight: normal;
+}
+
+.thread-link {
+    border: 1px solid red;
+}

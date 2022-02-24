@@ -44,6 +44,7 @@ class Thread(db.Model):
             "views": self.views,
             "likes": self.likes,
             "content": self.content,
+            "username": self.user.username,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at
         }
