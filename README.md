@@ -11,7 +11,7 @@ Javascipt | Node.js | Flask | React | Redux | SQLAlchemy | PostgresQL
 Launching Locally
 
 Prerequisites: 
-Node.js version _________
+Node.js version 16.13.1
 
 Getting Started
 1) Clone the repository 
