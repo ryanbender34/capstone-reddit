@@ -12,6 +12,7 @@ import About from './components/About/about';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import FourOhFour from './components/FourOhFour/fourohfour';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -50,12 +51,15 @@ function App() {
         <Route path='/' exact={true} >
           <Home></Home>
         </Route>
-        <Route path='/:category' exact={true} >
+        <Route path='/categories/:categoryId' exact={true} >
           <CategoryPage></CategoryPage>
         </Route>
-        <Route path='/:category/:threadId' exact={true} >
+        <Route path='/threads/:threadId' exact={true} >
           <ThreadPage />
         </Route>
+        <Route>
+            <FourOhFour />
+          </Route>
       </Switch>
     </BrowserRouter>
   );

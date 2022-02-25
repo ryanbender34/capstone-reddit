@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useLocation } from 'react-router-dom';
 import { selectCategory } from '../../store/categories';
 import { getThreads } from '../../store/threads';
+import catConverter from '../../utils';
 import ThreadCard from '../ThreadCard/threadcard';
 import './category.css';
 
 const CategoryPage = () => {
-	const {category} = useParams();
+    const {categoryId} = useParams()
+	const catId = parseInt(categoryId, 10)
+    console.log(catId, 'hmm', typeof catId)
 	const dispatch = useDispatch();
     const location = useLocation();
 
 	useEffect(() => {
-        dispatch(selectCategory(category));
+        dispatch(selectCategory(catId));
         dispatch(getThreads());
 	}, [dispatch, location]);
 
@@ -20,19 +23,10 @@ const CategoryPage = () => {
         return state.categories.active?.threads
     })
 
-	// const filteredProjects = Object.values(allProjects).filter(project => project.categoryId.toString() === categoryId);
-	// const projectsArr = Object.values(filteredProjects);
-
-	// const allCategories = useSelector(state => {
-	// 	return state.categories
-	// });
-	// const selectedCategory = Object.values(allCategories).filter(category => category.id.toString() === categoryId);
-	// const categoryArr = Object.values(selectedCategory);
-
 	return (
         <>
             <div className='categoriespage-container'>
-                <h1 className="cat-header">s/{category}</h1>
+                <h1 className="cat-header">s/{catConverter(catId)}</h1>
                 {curThreadsArr?.map((thread, index) => {
                     return (
                         <ThreadCard key ={thread.id} thread={thread}> </ThreadCard>

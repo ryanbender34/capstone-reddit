@@ -1,0 +1,31 @@
+.about-container {
+    margin-left: 5%;
+}
+
+
+
+
+.about-dev-link {
+    color: black;
+    padding: 2px;
+    font-size: 13px;
+}
+
+.about-dev-link:hover {
+font-weight: bold;
+}
+
+.fa {
+    color: #3a3a3a;
+    font-size: 18px;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+.fa:hover {
+    cursor: pointer;
+    animation-name: bounce;
+}

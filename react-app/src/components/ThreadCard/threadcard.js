@@ -68,7 +68,7 @@ const ThreadCard = ({ thread }) => {
                             <div className="increment down" onClick={user ? () => downVote(thread.id) : null}>&#8595;</div>
                         </div>
                     </div>
-                    <Link className='thread-column-2' to={`${catConverter(thread.categoryId)}/${thread.id}`}>
+                    <Link className='thread-column-2' to={`/threads/${thread.id}`}>
                         <div className='thread-topline'>
                             <p className='thread-category'>s/{catConverter(thread.categoryId)}</p>
                             <p className='thread-postedby'>Posted by {thread.username} {dateConverter(thread.updatedAt)} ago</p>

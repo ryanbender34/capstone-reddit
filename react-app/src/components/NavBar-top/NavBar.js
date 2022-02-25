@@ -17,12 +17,12 @@ const NavBar = () => {
             <NavLink className='about-link' to='/about'>About</NavLink>
           </li>
           <li className='topnav'>
-            <NavLink to='/basketball' exact={true}>
+            <NavLink to={`/categories/1`} exact={true}>
               Basketball
             </NavLink>
           </li>
           <li className='topnav'>
-            <NavLink to='/football' exact={true}>
+            <NavLink to={`/categories/2`} exact={true}>
               Football
             </NavLink>
           </li>
