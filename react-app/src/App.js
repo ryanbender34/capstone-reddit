@@ -52,7 +52,7 @@ function App() {
           <Home></Home>
         </Route>
         <Route path='/categories/:categoryId' exact={true} >
-          <CategoryPage></CategoryPage>
+          <CategoryPage />
         </Route>
         <Route path='/threads/:threadId' exact={true} >
           <ThreadPage />

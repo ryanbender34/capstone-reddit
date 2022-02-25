@@ -5,6 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { getThreads, putThread, deleteThread } from '../../store/threads';
 import catConverter from "../../utils";
 import Comment from '../Comment/comment';
+import FourOhFour from '../FourOhFour/fourohfour';
 import './threadpage.css';
 
 const ThreadPage = () => {
@@ -90,57 +91,62 @@ const ThreadPage = () => {
 
 
 
-
-    return (
-        <React.Fragment>
-            {thisThread.map(thread => {
-                return (
-                    <li className='thread-main-content' key={thread.id}>
-                        <div className='thread-header-section'>
-                            <div className='date-info'>
-                                <p  className="threaddate thread-day">{getTheDay(thread.createdAt)}</p>
-                                <p  className="threaddate thread-weekday">{getWeekday(thread.createdAt)}</p>
-                                <div className="thread-date-column3">
-                                    <p  className="threaddate thread-month">{getTheMonth(thread.createdAt)},</p>
-                                    <p  className="threaddate thread-year"> {getYear(thread.createdAt)}</p>
+    if (thisThread.length > 0) {
+        return (
+            <React.Fragment>
+                {thisThread?.map(thread => {
+                    return (
+                        <li className='thread-main-content' key={thread.id}>
+                            <div className='thread-header-section'>
+                                <div className='date-info'>
+                                    <p  className="threaddate thread-day">{getTheDay(thread.createdAt)}</p>
+                                    <p  className="threaddate thread-weekday">{getWeekday(thread.createdAt)}</p>
+                                    <div className="thread-date-column3">
+                                        <p  className="threaddate thread-month">{getTheMonth(thread.createdAt)},</p>
+                                        <p  className="threaddate thread-year"> {getYear(thread.createdAt)}</p>
+                                    </div>
                                 </div>
+                                <h3 className="thread-title" contentEditable={editable} suppressContentEditableWarning={true}>{thread.title}</h3>
                             </div>
-                            <h3 className="thread-title" contentEditable={editable} suppressContentEditableWarning={true}>{thread.title}</h3>
-                        </div>
-                        <div className='thread-info' >
-                            <span>Posted by {thread.username} in {catConverter(thread.categoryId)}</span>
-                        </div>
-                        <p className="thread-description" contentEditable={editable} suppressContentEditableWarning={true}>{thread.description}</p>
-                        <p className="thread-content" contentEditable={editable} suppressContentEditableWarning={true}>{thread.content}</p>
-                        <div className='thread-options' hidden={thread.userId !== userId}>
-                            <button className="edit-thread" hidden={editable} onClick={activeEdit}>Edit Thread</button>
-							<button className='delete-thread' hidden={editable} onClick={() => setDeletePopUp(true)} >Delete Thread</button>
-                            {editable &&
-                                <div>
-                                    <form onSubmit={e => saveUpdate(e)}>
-                                        <button type="submit">Save</button>
-                                        <button onClick={e => cancelEdit(e)}>Cancel</button>
-                                    </form>
-                                </div>
-                            }
-                        </div>
-                    </li>
-                    
-                )
-            })}
-            { deletePopUp &&
-            <div className="deletepopup">
-                <h2 className='delete-title'>Thread: <span className='delete-thread-title'>{selectedThread?.title}</span></h2>
-                <h3 className='delete-header'>Are you sure you want to delete this thread?</h3>
-                <div className='delete-options'>
-                    <button className='option-button confirm-delete' onClick={(e) => trashThread(e)}>DELETE</button>
-                    <button className='option-button cancel' onClick={() => setDeletePopUp(false)}>CANCEL</button>
+                            <div className='thread-info' >
+                                <span>Posted by {thread.username} in {catConverter(thread.categoryId)}</span>
+                            </div>
+                            <p className="thread-description" contentEditable={editable} suppressContentEditableWarning={true}>{thread.description}</p>
+                            <p className="thread-content" contentEditable={editable} suppressContentEditableWarning={true}>{thread.content}</p>
+                            <div className='thread-options' hidden={thread.userId !== userId}>
+                                <button className="edit-thread" hidden={editable} onClick={activeEdit}>Edit Thread</button>
+                                <button className='delete-thread' hidden={editable} onClick={() => setDeletePopUp(true)} >Delete Thread</button>
+                                {editable &&
+                                    <div>
+                                        <form onSubmit={e => saveUpdate(e)}>
+                                            <button type="submit">Save</button>
+                                            <button onClick={e => cancelEdit(e)}>Cancel</button>
+                                        </form>
+                                    </div>
+                                }
+                            </div>
+                        </li>
+                        
+                    )
+                })}
+                { deletePopUp &&
+                <div className="deletepopup">
+                    <h2 className='delete-title'>Thread: <span className='delete-thread-title'>{selectedThread?.title}</span></h2>
+                    <h3 className='delete-header'>Are you sure you want to delete this thread?</h3>
+                    <div className='delete-options'>
+                        <button className='option-button confirm-delete' onClick={(e) => trashThread(e)}>DELETE</button>
+                        <button className='option-button cancel' onClick={() => setDeletePopUp(false)}>CANCEL</button>
+                    </div>
                 </div>
-            </div>
-            }
-           <Comment />
-        </React.Fragment>
+                }
+               <Comment />
+            </React.Fragment>
+        )
+
+    } else return (
+        <FourOhFour />
     )
+
 
  }
 
