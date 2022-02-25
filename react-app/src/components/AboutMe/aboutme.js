@@ -5,7 +5,7 @@ const About = () => {
     return (
         <div className="about-me-container">
                 <h1 className="about-me-header">Hello!</h1>
-                <h2 classNAme='about-me-title'>About</h2>
+                <h2 className='about-me-title'>About</h2>
                 <p className='about-me-text'>Scouttit is a reddit inspired website where users can create threads to start discussions about amateur prospects in various sports.</p>
                 <br />
                 <div className='dev-info'> 

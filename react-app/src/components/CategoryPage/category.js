@@ -5,36 +5,37 @@ import { selectCategory } from '../../store/categories';
 import { getThreads } from '../../store/threads';
 import catConverter from '../../utils';
 import ThreadCard from '../ThreadCard/threadcard';
+import FourOhFour from '../FourOhFour/fourohfour';
 import './category.css';
 
 const CategoryPage = () => {
     const {categoryId} = useParams()
 	const catId = parseInt(categoryId, 10)
-    console.log(catId, 'hmm', typeof catId)
 	const dispatch = useDispatch();
     const location = useLocation();
+    console.log(location, 'hey')
 
 	useEffect(() => {
         dispatch(selectCategory(catId));
-        dispatch(getThreads());
 	}, [dispatch, location]);
 
     const curThreadsArr = useSelector(state => {
         return state.categories.active?.threads
     })
 
-	return (
-        <>
-            <div className='categoriespage-container'>
-                <h1 className="cat-header">s/{catConverter(catId)}</h1>
-                {curThreadsArr?.map((thread, index) => {
-                    return (
-                        <ThreadCard key ={thread.id} thread={thread}> </ThreadCard>
-                    )
-                })}
-            </div >
-        </>
-	)
+        return (
+            <>
+                <div className='categoriespage-container'>
+                    <h1 className="cat-header">s/{catConverter(catId)}</h1>
+                    {curThreadsArr?.map((thread, index) => {
+                        return (
+                            <ThreadCard key ={thread.id} thread={thread}> </ThreadCard>
+                        )
+                    })}
+                </div >
+            </>
+        )
+
 };
 
 export default CategoryPage;

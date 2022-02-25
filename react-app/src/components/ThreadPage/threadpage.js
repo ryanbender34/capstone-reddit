@@ -16,6 +16,7 @@ const ThreadPage = () => {
     const [editable, setEditable] = useState(false);
     const [deletePopUp, setDeletePopUp] = useState(false);
     const [original, setOriginal] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const allThreads = useSelector(state => {return state.threads})
     const selectedThread = Object.values(allThreads).filter(thread => thread.id === parseInt(threadId))[0];
@@ -54,8 +55,13 @@ const ThreadPage = () => {
         const content = document.querySelector(".thread-content").innerHTML
         // todo - add current vote here
 		let data = { threadId, title, description, content }
-		dispatch(putThread(data))
-		setEditable(false)
+        if (title && content) {
+            dispatch(putThread(data))
+            setErrors([]);
+        } else {
+            setErrors(['Title and content are required'])
+        }
+		setEditable(false);
 	}
 
     const getTheDay = (date) => {
@@ -113,6 +119,13 @@ const ThreadPage = () => {
                             </div>
                             <p className="thread-description" contentEditable={editable} suppressContentEditableWarning={true}>{thread.description}</p>
                             <p className="thread-content" contentEditable={editable} suppressContentEditableWarning={true}>{thread.content}</p>
+                            {(errors.length > 0) &&
+                                <div>
+                                    {errors.map((error, ind) => (
+                                    <div className="auth-errors" key={`error-${ind}`}>{error}</div>
+                                    ))}
+                                </div>
+                            }
                             <div className='thread-options' hidden={thread.userId !== userId}>
                                 <button className="edit-thread" hidden={editable} onClick={activeEdit}>Edit Thread</button>
                                 <button className='delete-thread' hidden={editable} onClick={() => setDeletePopUp(true)} >Delete Thread</button>

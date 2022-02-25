@@ -109,10 +109,19 @@ const Comment = () => {
         // todo - add current vote here
         let vote = 0
 		let data = { commentId, authorId, threadId, reply, content, vote }
-		dispatch(putComment(data))
-		let commentBody = document.querySelector(`.comment-body-${commentId}`)
-		commentBody.contentEditable = false;
-		setEditable(false)
+		if (content) {
+			dispatch(putComment(data))
+			document.querySelector(`.comment-body-${commentId}`).contentEditable = false;
+			document.querySelector(`.com-error-${commentId}`)?.remove()
+			setEditable(false)
+		} else {
+			let commentError = document.createElement('p');
+			commentError.setAttribute('class', `com-error-${commentId}`);
+			commentError.innerText = 'Comment must contain text';
+			commentError.style.color = 'red';
+			let comContainer = document.querySelector(`.comment-parent-${commentId}`);
+			comContainer.prepend(commentError);
+		}
 	}
 
 	const saveReplyUpdate = (e, id, cId) => {
@@ -125,10 +134,19 @@ const Comment = () => {
 		let reply = cId;
         let vote = 0;
 		let data = { commentId, authorId, threadId, reply, content, vote }
-		dispatch(putComment(data))
-		let replyBody = document.querySelector(`.reply-body-${id}`)
-		replyBody.contentEditable = false;
-		setEditable(false)
+		if (content) {
+			dispatch(putComment(data))
+			document.querySelector(`.reply-body-${id}`).contenteditable = false
+			document.querySelector(`.reply-error-${id}`)?.remove()
+			setEditable(false)
+		} else {
+			let replyError = document.createElement('p');
+			replyError.setAttribute('class', `reply-error-${id}`);
+			replyError.innerText = 'Reply must contain text';
+			replyError.style.color = 'red';
+			let replyContainer = document.querySelector(`.reply-parent-${id}`);
+			replyContainer.prepend(replyError);
+		}
 	}
 
 
@@ -136,18 +154,26 @@ const Comment = () => {
 		const body = document.querySelector(`.comment-body-${id}`)
 		body.innerHTML = comment;
 		setEditable(false);
+		// document.querySelector(`.reply-btn-${id}`)?.setAttribute('hidden', false)
+		document.querySelectorAll(`.com-error-${id}`)?.forEach(ele => {
+			ele.remove()
+		})
 	}
 
 	const cancelReplyUpdate = (e, id) => {
 		const body = document.querySelector(`.reply-body-${id}`)
 		body.innerHTML = comment;
 		setEditable(false);
+		document.querySelectorAll(`.reply-error-${id}`)?.forEach(ele => {
+			ele.remove()
+		})
 	}
 
 	const activeEdit = (e, id) => {
 		setEditable(id)
 		let commentBody = document.querySelector(`.comment-body-${id}`)
 		commentBody.contentEditable = true;
+		// document.querySelector(`.reply-btn-${id}`)?.setAttribute('hidden', true)
 		setComment(commentBody.innerText)
 	}
 
@@ -155,9 +181,7 @@ const Comment = () => {
 		if (user) {
 			setReplyValue(id);
 			setShowReplyForm(true);
-		} else {
-			// alert("must be logged in to reply to a comment")
-		}
+		} 
 	}
 
 	const activeEditReply = (e, id) => {
@@ -175,7 +199,7 @@ const Comment = () => {
 	return (
 		<section className="add-comment">
 			<h1 className='comment-header'>Leave a comment...</h1>
-			<button onClick={user ? () => setShowCommentForm(true) : () => setErrors(['Please log in to leave a comment'])}>Create a Comment</button>
+			<button onClick={user ? () => setShowCommentForm(true) : () => setErrors([`Please login to leave a comment`])}>Create a Comment</button>
 			<br />
 			<div className="errors-container">
 				{(errors.length > 0) && errors?.map((err, i) => {
@@ -207,7 +231,7 @@ const Comment = () => {
 										<p className={`comment-body comment-body-${comment.id}`} id={comment.id} suppressContentEditableWarning={true} onChange={(e) => setComment(e.target.value)}>{comment.content}</p>
 									</div>
 									<div className="comments-btns">
-										<button className="reply-btn" value={comment.id} onClick={(e) => activeReply(e, comment.id)}>Reply</button>
+										<button className={`reply-btn-${comment.id}`} value={comment.id} onClick={(e) => activeReply(e, comment.id)}>Reply</button>
 										<button hidden={(!(userId === comment.authorId) || (editable))} onClick={(e) => activeEdit(e, comment.id)}>Edit</button>
 										<button hidden={(!(userId === comment.authorId) || editable)} onClick={() => removeComment(comment.id)}>Delete</button>
 									</div>
@@ -224,7 +248,7 @@ const Comment = () => {
 									}
 									{(editable === comment.id) &&
 										<div hidden={(!(userId === comment.authorId))}>
-											<form id={comment.id} onSubmit={e => saveUpdate(e, comment.id)}>
+											<form id={`comment-edit-form-${comment.id}`} onSubmit={e => saveUpdate(e, comment.id)}>
 												<button type="submit">Save</button>
 												<button type="button" onClick={e => cancelUpdate(e, comment.id)}>Cancel</button>
 											</form>
@@ -236,26 +260,29 @@ const Comment = () => {
 							{onlyReplyArr?.slice(0).reverse().map(reply => {
 								if (reply.reply === comment.id) {
 									return (
-										<li key={`container-for-${reply.id}`} className={`reply-parent reply-parent-${reply.id}`}>
-											<div className={`reply-list reply-${reply.id}`} key={reply.id}>
-												<div className="reply-text">
-													<p className="reply-username">{reply.username} <span className="updated-tag">updated {dateConverter(reply.updatedAt)} ago</span></p>
-													<p className={`reply-body reply-body-${reply.id}`} id={reply.id} contentEditable='false' suppressContentEditableWarning={true} onChange={(e) => setComment(e.target.value)}>{reply.content}</p>
-												</div>
-												<div className="reply-btns">
-													<button hidden={(!(userId === reply.authorId) || (editable))} onClick={(e) => activeEditReply(e, reply.id)}>Edit</button>
-													<button hidden={(!(userId === reply.authorId) || (editable))} onClick={() => removeComment(reply.id)}>Delete</button>
-												</div>
-												{(editable === reply.id) &&
-													<div key={`editbtns-${reply.id}`} hidden={(!(userId === reply.authorId))}>
-														<form id={reply.id} className="reply-btns" onSubmit={e => saveReplyUpdate(e, reply.id, reply.reply)}>
-															<button type="submit">Save</button>
-															<button type="button" onClick={e => cancelReplyUpdate(e, reply.id)}>Cancel</button>
-														</form>
+										<React.Fragment key={reply.id}>
+											<hr />
+											<li key={`container-for-${reply.id}`} className={`reply-parent reply-parent-${reply.id}`}>
+												<div className={`reply-list reply-${reply.id}`} key={reply.id}>
+													<div className="reply-text">
+														<p className="reply-username">{reply.username} <span className="updated-tag">updated {dateConverter(reply.updatedAt)} ago</span></p>
+														<p className={`reply-body reply-body-${reply.id}`} id={reply.id} contentEditable='false' suppressContentEditableWarning={true} onChange={(e) => setComment(e.target.value)}>{reply.content}</p>
 													</div>
-												}
-											</div>
-										</li>
+													<div className="reply-btns">
+														<button hidden={(!(userId === reply.authorId) || (editable))} onClick={(e) => activeEditReply(e, reply.id)}>Edit</button>
+														<button hidden={(!(userId === reply.authorId) || (editable))} onClick={() => removeComment(reply.id)}>Delete</button>
+													</div>
+													{(editable === reply.id) &&
+														<div key={`editbtns-${reply.id}`} hidden={(!(userId === reply.authorId))}>
+															<form id={reply.id} className="reply-btns" onSubmit={e => saveReplyUpdate(e, reply.id, reply.reply)}>
+																<button type="submit">Save</button>
+																<button type="button" onClick={e => cancelReplyUpdate(e, reply.id)}>Cancel</button>
+															</form>
+														</div>
+													}
+												</div>
+											</li>
+										</React.Fragment>
 									)
 								} else {
 									return (<React.Fragment key={`nothing-${reply.id}`}></React.Fragment>)
