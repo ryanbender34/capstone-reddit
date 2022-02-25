@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import Blueprint, jsonify, make_response, request
 from flask_login import login_required
-from app.models import db, Thread
+from app.models import db, Thread, Comment
 from app.forms import ThreadForm
 
 thread_routes = Blueprint("threads", __name__)
@@ -33,7 +33,6 @@ def post_thread():
             description=request.json["description"],
             category_id=request.json["category_id"],
             views=0,
-            likes=0,
             content=request.json["content"],
             created_at=datetime.now(),
             updated_at=datetime.now())

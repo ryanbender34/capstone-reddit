@@ -12,17 +12,9 @@ def get_categories():
 def get_category(category_id):
     category = [x.to_JSON() for x in Category.query.filter(Category.id == category_id)]
 
-    print(type(category), 'type is here')
-
     c_threads = [thread.to_JSON() for thread in Thread.query.filter(category_id == Thread.category_id)]
    
     category[0]['threads'] = c_threads
-
-    print(category, 'yadayada')
-
-    # print(category, type(category), type(category.threads), 'edited')
-
-    # finalCategory = [x.to_JSON() for x in category]
 
     return category[0]
 

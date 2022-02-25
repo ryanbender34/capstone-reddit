@@ -34,9 +34,13 @@ const Comment = () => {
 		dispatch(getComments({ threadId }))
 	}, [dispatch, threadId])
 
-	const dateConverter = (comment) => {
+	const dateConverter = (updatedAt) => {
 		const currentDate = new Date();
-		const commentDate = Date.parse(comment)
+		const commentDate = Date.parse(updatedAt)
+		// const currentSeconds = Date.parse(currentDate)
+		// todo convert comment to UTC
+
+		console.log(currentDate, commentDate, 'these are my dates')
 		let seconds = ((currentDate - (commentDate + 21599000)) / 1000)
 
 		var d = Math.floor(seconds / (3600 * 24));
@@ -77,8 +81,8 @@ const Comment = () => {
 				setShowCommentForm(true)
 				// todo - how do I get the comment to reset after I successfully post a comment
 			} else setComment('')
-
 		})
+		setComment('')
 	}
 	
 

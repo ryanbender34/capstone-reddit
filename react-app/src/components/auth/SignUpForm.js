@@ -1,8 +1,8 @@
+import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import Cookies from 'js-cookie';
 import './auth.css';
 
 
@@ -15,17 +15,40 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const onSignUp = async (e) => {
+  const onSignUp = (e) => {
     e.preventDefault();
+    setErrors([])
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+      dispatch(signUp(username, email, password)).then((res) => {
+          if (res?.errors) setErrors(res.errors)
+        })
     } else {
-      errors.push("Password and repeat password must match")
+      setErrors(["Password and repeat do not match"])
     }
   };
+
+  // function onSignUp (e) {
+    // return async dispatch => {
+    //   if (password === repeatPassword) { 
+    //     dispatch(signUp(username, email, password))
+    //     return 'success';
+    //   }
+    // }
+  //   setErrors([])
+  //   e.preventDefault();
+  //   if (password === repeatPassword) {
+  //     await dispatch(signUp(username, email, password)).catch(async (res) => {
+  //         console.log('here response')
+  //         const data = await res.json();
+  //         console.log(data, 'here')
+  //         if (data && data.errors) setErrors(data.errors)
+  //       })
+  //   } else {
+  //     setErrors(["Password and repeat do not match"])
+  //   }
+  // };
+
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -51,17 +74,19 @@ const SignUpForm = () => {
     <div className='signup-body'>
       <form className='auth-form' onSubmit={onSignUp}>
         <input type="hidden" name="csrf_token" value={Cookies.get('XSRF-TOKEN')} />
-        <div>
-          {errors.map((error, ind) => (
-            <div className="auth-errors" key={ind}>{error}</div>
-          ))}
-        </div>
+        {(errors.length > 0) &&
+          <div>
+            {errors.map((error, ind) => (
+              <div className="auth-errors" key={`error-${ind}`}>{error}</div>
+            ))}
+          </div>
+        }
         <div>
           <label>User Name </label>
-          <input className='auth-input' type='text' name='username' onChange={updateUsername} value={username}></input>
+          <input className='auth-input' type='text' name='username' onChange={updateUsername} value={username} required></input>
         </div>
         <label>Email</label>
-        <input type='text' className='auth-input' name='email' onChange={updateEmail} value={email}></input>
+        <input type='text' className='auth-input' name='email' onChange={updateEmail} value={email} required></input>
   
           <label>Password</label>
           <input

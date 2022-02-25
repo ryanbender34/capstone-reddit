@@ -4,6 +4,7 @@ const LOAD_THREADS = "threads/LOAD_THREADS";
 const CREATE_THREAD = "threads/CREATE_THREAD";
 const EDIT_THREAD = "threads/EDIT_THREAD";
 const TRASH_THREAD = "threads/TRASH_THREAD";
+const LIKE_THREAD = 'threads/LIKE_THREAD';
 
 const loadThreads = (threads) => ({
 	type: LOAD_THREADS,
@@ -25,10 +26,16 @@ const trashThread = (threadId) => ({
 	threadId
 })
 
+const likeThread = (vote) => ({
+	type: LIKE_THREAD,
+	vote
+})
+
+
 export const getThreads = function () {
 	return async (dispatch) => {
 		const response = await csrfFetch("/api/threads/");
-
+		
 		if (response.ok) {
 			const threads = await response.json();
 			dispatch(loadThreads(threads));
@@ -40,6 +47,48 @@ export const getThreads = function () {
 		} else {
 			return ['An error occurred. Please try again.'];
 		}
+	}
+}
+
+export const postLike = function ({userId, threadId, vote}) {
+	return async (dispatch) => {
+		const response = await csrfFetch("/api/votes/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				user_id: userId,
+				thread_id: threadId,
+				vote: vote
+			})
+		})
+
+		if (response.ok) {
+			const vote = await response.json();
+			dispatch(likeThread(vote))
+		} else return ['No']
+	}
+}
+
+export const putLike = function ({userId, threadId, vote}) {
+	return async (dispatch) => {
+		const response = await csrfFetch("/api/votes/", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				user_id: userId,
+				thread_id: threadId,
+				vote: vote
+			})
+		})
+
+		if (response.ok) {
+			const vote = await response.json();
+			dispatch(likeThread(vote))
+		} else return ['No']
 	}
 }
 
@@ -142,6 +191,10 @@ export default function reducer(stateDotThreads = {}, action) {
 		case TRASH_THREAD:
 			delete updatedState[action.threadId];
 			return updatedState;
+		case LIKE_THREAD:
+			const threadId = action.vote.threadId
+			updatedState[threadId].votes[action.vote.id - 1] = action.vote
+			return updatedState
 		default:
 			return stateDotThreads;
 	}
