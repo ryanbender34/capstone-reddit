@@ -27,28 +27,6 @@ const SignUpForm = () => {
     }
   };
 
-  // function onSignUp (e) {
-    // return async dispatch => {
-    //   if (password === repeatPassword) { 
-    //     dispatch(signUp(username, email, password))
-    //     return 'success';
-    //   }
-    // }
-  //   setErrors([])
-  //   e.preventDefault();
-  //   if (password === repeatPassword) {
-  //     await dispatch(signUp(username, email, password)).catch(async (res) => {
-  //         console.log('here response')
-  //         const data = await res.json();
-  //         console.log(data, 'here')
-  //         if (data && data.errors) setErrors(data.errors)
-  //       })
-  //   } else {
-  //     setErrors(["Password and repeat do not match"])
-  //   }
-  // };
-
-
 
   const updateUsername = (e) => {
     setUsername(e.target.value);

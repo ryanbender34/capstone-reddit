@@ -21,6 +21,7 @@ def add_vote():
 @login_required
 def put_vote():
     existing_vote = db.session.query(Vote).filter(Vote.id == id)
+    print(existing_vote, 'what is this')
     existing_vote.update({
             'user_id':request.json["user_id"],
             'thread_id':request.json["thread_id"],

@@ -118,9 +118,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
-    console.log(data, 'store response')
     if (data.errors) {
-      console.log('should be here if error in store')
       return data;
     }
   } else {

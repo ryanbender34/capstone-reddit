@@ -33,6 +33,11 @@ const Create = () => {
         setCreateStatus(false)
     }
 
+    const handleCancel = () => {
+        setCreateStatus(false)
+        setErrors([])
+    }
+
     return (
         <>
             <button className='threadcreatebtn' hidden={createStatus} onClick={user ? () => setCreateStatus(true) : () => setErrors(['Please log in to start a thread'])}>Create new thread</button>
@@ -55,10 +60,10 @@ const Create = () => {
                     <label htmlFor='description'>Description: </label>
                     <textarea type='text' id='description' value={description} onChange={(e) => setDescription(e.target.value)} placeholder='thread description (optional)'></textarea>
                     <label htmlFor='content'>Content: </label>
-                    <textarea type='text' id='content' value={content} onChange={(e) => setContent(e.target.value)} placeholder='thread content'></textarea>
+                    <textarea type='text' id='content' value={content} onChange={(e) => setContent(e.target.value)} placeholder='thread content' required></textarea>
                     <div>
                         <button type="submit">Submit New Thread</button>
-                        <button onClick={() => setCreateStatus(false)}>Cancel</button>
+                        <button onClick={() => handleCancel()}>Cancel</button>
                     </div>
                 </form>
             </div>

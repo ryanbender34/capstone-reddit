@@ -36,7 +36,7 @@
     display: flex;
     flex-direction: row;
     padding: 1% 0 1% 4%;
-    border: 1px solid lightgrey;
+    /* border: 1px solid lightgrey; */
 }
 
 .vote-container {
@@ -47,7 +47,7 @@
 }
 
 .column-holder {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: inherit;
     align-items: center;
 }

@@ -13,7 +13,6 @@ const CategoryPage = () => {
 	const catId = parseInt(categoryId, 10)
 	const dispatch = useDispatch();
     const location = useLocation();
-    console.log(location, 'hey')
 
 	useEffect(() => {
         dispatch(selectCategory(catId));

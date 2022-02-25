@@ -193,7 +193,8 @@ export default function reducer(stateDotThreads = {}, action) {
 			return updatedState;
 		case LIKE_THREAD:
 			const threadId = action.vote.threadId
-			updatedState[threadId].votes[action.vote.id - 1] = action.vote
+			const spot = updatedState[threadId].votes
+			updatedState[threadId].votes[spot.length] = action.vote
 			return updatedState
 		default:
 			return stateDotThreads;
