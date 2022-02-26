@@ -75,6 +75,7 @@
     font-weight: 400;
     font-family: Arial, sans-serif;
     margin: 0;
+    padding-right: 3px;
 }
 
 .thread-body-text {

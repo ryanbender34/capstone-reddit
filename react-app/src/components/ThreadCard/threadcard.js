@@ -9,6 +9,15 @@ const ThreadCard = ({ thread }) => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session?.user)
     const threads = useSelector(state => state.threads)
+    let commentsArr = []
+    console.log(thread.comments, 'hmm', typeof thread.comments)
+    // console.log(Object.values(thread.comments), 'here are the values')
+    for (const key in thread.comments) {
+        console.log(thread.comments[key], 'key value here')
+        if (thread.comments[key].reply === null) {
+            commentsArr.push(thread.comments[key])
+        }
+    }
 	const userId = user?.id
     const [vote, setVote] = useState(0)
     // const dateConverter = (comment) => {
@@ -70,7 +79,7 @@ const ThreadCard = ({ thread }) => {
                         </div>
                         <h3 className='thread-header-text'> {thread.title}</h3>
                         <div className='thread-bottomline'>
-                            <p className='BL-text BL-comments'>{thread.comments.length} comments</p>
+                            <p className='BL-text BL-comments'>{commentsArr.length} comments</p>
                         </div>
                     </Link>
                 </div>

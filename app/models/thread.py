@@ -44,7 +44,7 @@ class Thread(db.Model):
             "content": self.content,
             "username": self.user.username,
             "comments":[comment.to_dict() for comment in self.comments],
-            "votes":[vote.to_dict() for vote in self.votes],
+            "votes":[vote.to_JSON() for vote in self.votes],
             "createdAt": self.created_at,
             "updatedAt": self.updated_at
         }
