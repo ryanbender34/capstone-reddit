@@ -18,16 +18,16 @@ const ThreadCard = ({ thread }) => {
             commentsArr.push(thread.comments[key])
         }
     }
-    // todo - this and 10 lines down is redundant
-    for (const key in thread.votes) {
-        voteCount += thread.votes[key].value
-    }
+    // for (const key in thread.votes) {
+    //     voteCount += thread.votes[key].value
+    // }
 	const userId = user?.id
     // // todo - should this useState? 
-    let userVote = 0;
+    let userVote = null;
     let voteId = null;
     let voteIndex = null;
     thread.votes?.forEach((vote, i) => {
+        voteCount += vote.value;
         if (vote.userId === userId) {
             voteId = vote.id;
             voteIndex = i;
@@ -69,7 +69,7 @@ const ThreadCard = ({ thread }) => {
             var d = Math.floor(seconds / (3600 * 24));
             var h = Math.floor(seconds % (3600 * 24) / 3600);
             var m = Math.floor(seconds % 3600 / 60);
-            var s = Math.floor(seconds % 60);
+            // var s = Math.floor(seconds % 60);
     
             var dDisplay = d > 0 ? d + (d === 1 ? " day " : " days ") : "";
             var hDisplay = ((h > 0) && (d === 0)) ? h + (h === 1 ? " hour " : " hours ") : "";
@@ -90,6 +90,11 @@ const ThreadCard = ({ thread }) => {
          dispatch(putLike({userId, threadId, value, voteId, voteIndex}))
     }
 
+    // todo delete all code related to deleting votes from the db
+    // const removeVote = async (threadId) => {
+    //     dispatch(deleteVote({userId, threadId, voteId, voteIndex}))
+    // }
+
 	return (
         <>
             <div className="thread-row" >
@@ -98,9 +103,9 @@ const ThreadCard = ({ thread }) => {
                         {/* todo - make upvote/downvote icons */}
                         {/* <i class="icon icon-upvote _2Jxk822qXs4DaXwsN7yyHA"></i> */}
                         <div className="vote-container">
-                            <div className={`vote-btn up up-${thread.id}`} value={1} onClick={(user && (userVote === -1)) ? () => updateVote(thread.id, 1) : (user && !userVote) ? () => postVote(thread.id, 1) : (user && (userVote === 1)) ? () => updateVote(thread.id, 0) : null}>&#8593;</div>
+                            <div className={`vote-btn up up-${thread.id}`} value={1} onClick={(user && (userVote === null)) ? () => postVote(thread.id, 1) : (user && (userVote < 1)) ? () => updateVote(thread.id, 1) : (user && (userVote === 1)) ? () => updateVote(thread.id, 0) : null}>&#8593;</div>
                             <div className='vote-counter'>{voteCount}</div>
-                            <div className={`vote-btn down down-${thread.id}`} value={-1} onClick={(user && (userVote === 1)) ? () => updateVote(thread.id, -1) : (user && !userVote) ? () => postVote(thread.id, -1) : (user && (userVote === -1)) ? () => updateVote(thread.id, 0): null}>&#8595;</div>
+                            <div className={`vote-btn down down-${thread.id}`} value={-1} onClick={(user && (userVote === null)) ? () => postVote(thread.id, -1) : (user && (userVote > -1)) ? () => updateVote(thread.id, -1) : (user && (userVote === -1)) ? () => updateVote(thread.id, 0) : null}>&#8595;</div>
                         </div>
                     </div>
                     <Link className='thread-column-2' to={`/threads/${thread.id}`}>

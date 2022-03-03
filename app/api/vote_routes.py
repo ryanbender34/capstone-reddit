@@ -24,7 +24,7 @@ def put_vote():
     t_id = request.json["thread_id"]
     vote_id = request.json["id"]
     updated_val = request.json["value"]
-    # todo - filter by voteId
+    # todo - filter by voteId, what is synchronize_session="fetch"
     db.session.query(Vote).filter(Vote.user_id == u_id, Vote.thread_id == t_id).update({
         "user_id": u_id,
         "thread_id": t_id,
@@ -36,3 +36,16 @@ def put_vote():
         return vote.to_JSON()
     else: 
         return make_response({"errors": ["Edit on non-existent vote"]})
+
+# @vote_routes.route('/', methods=["DELETE"])
+# @login_required
+# def trash_vote():
+#     id = request.json["id"]
+#     vote = Vote.query.get(id)
+#     if vote:
+#         db.session.query(Vote).filter(Vote.id == id).delete(
+#             synchronize_session="fetch")
+#         db.session.commit()
+#         return {"errors": False}
+#     else:
+#         return make_response({"errors": ["delete on non-existent vote"]})

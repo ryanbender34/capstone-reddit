@@ -5,6 +5,7 @@ const CREATE_THREAD = "threads/CREATE_THREAD";
 const EDIT_THREAD = "threads/EDIT_THREAD";
 const TRASH_THREAD = "threads/TRASH_THREAD";
 const LIKE_THREAD = 'threads/LIKE_THREAD';
+// const TRASH_VOTE = 'threads/TRASH_VOTE';
 
 const loadThreads = (threads) => ({
 	type: LOAD_THREADS,
@@ -30,6 +31,11 @@ const likeThread = (vote) => ({
 	type: LIKE_THREAD,
 	vote
 })
+
+// const trashVote = (index) => ({
+// 	type: TRASH_VOTE,
+// 	index
+// })
 
 
 export const getThreads = function () {
@@ -94,6 +100,30 @@ export const putLike = function ({userId, threadId, value, voteId, voteIndex = n
 		} else return ['No']
 	}
 }
+
+// export const deleteVote= function ({ voteId, voteIndex }) {
+// 	return async (dispatch) => {
+// 		const response = await csrfFetch("/api/votes/", {
+// 			method: "DELETE",
+// 			headers: {
+// 				"Content-Type": "application/json"
+// 			},
+// 			body: JSON.stringify({ id: voteId })
+// 		})
+
+// 		if (response.ok) {
+// 			dispatch(trashVote(voteIndex));
+// 			return true;
+// 		} else if (response.status < 500) {
+// 			const data = await response.json();
+// 			if (data.errors) {
+// 				return data.errors;
+// 			}
+// 		} else {
+// 			return ['An error occured. Please try again.'];
+// 		}
+// 	}
+// }
 
 export const postThread = function ({ userId, title, description, categoryId, content }) {
 	return async (dispatch) => {
@@ -203,6 +233,8 @@ export default function reducer(stateDotThreads = {}, action) {
 			// voteIndex will be undefined only when we are posting
 			(voteIndex === undefined) ? updatedState[threadId].votes[length] = action.vote : updatedState[threadId].votes[voteIndex] = action.vote
 			return updatedState
+		// case TRASH_VOTE:
+		// 	delete updatedState[threadId].votes[index]
 		default:
 			return stateDotThreads;
 	}
