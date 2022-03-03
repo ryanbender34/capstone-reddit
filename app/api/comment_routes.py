@@ -46,8 +46,8 @@ def post_comment():
             thread_id=request.json["thread_id"],
             reply=request.json["reply"],
             content=request.json["content"],
-            created_at=datetime.now(),
-            updated_at=datetime.now())
+            created_at=datetime.utcnow(),
+            updated_at=datetime.utcnow())
 
         db.session.add(comment)
         db.session.commit()
@@ -70,7 +70,7 @@ def put_comment():
         "reply": request.json["reply"],
         "content": request.json["content"],
         "vote": request.json["vote"],
-        "updated_at": datetime.now()
+        "updated_at": datetime.utcnow()
     }, synchronize_session="fetch")
     db.session.commit()
     comment = Comment.query.get(id)

@@ -32,7 +32,6 @@ export const getComments = function ({ threadId }) {
 
         if (response.ok) {
             const comments = await response.json();
-            console.log(comments, 'whats this')
             dispatch(loadComments(comments));
         } else if (response.status < 500) {
             const data = await response.json();
@@ -46,7 +45,7 @@ export const getComments = function ({ threadId }) {
 }
 
 
-export const postComment = function ({ authorId, threadId, reply, content, vote }) {
+export const postComment = function ({ authorId, threadId, reply, content }) {
     return async (dispatch) => {
         const response = await csrfFetch("/api/comments/", {
             method: "POST",
@@ -63,7 +62,6 @@ export const postComment = function ({ authorId, threadId, reply, content, vote 
 
         if (response.ok) {
             const comment = await response.json();
-            console.log(comment, 'back from backend')
             dispatch(createComment(comment));
             return comment
         } else if (response.status < 500) {

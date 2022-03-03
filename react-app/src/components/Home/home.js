@@ -8,7 +8,7 @@ import Create from '../Create/create';
 
 const Home = () => {
     const dispatch = useDispatch();
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0);
 
     useEffect(() => {
         dispatch(getThreads());

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from flask import Blueprint, jsonify, make_response, request
 from flask_login import login_required
 from app.models import db, Thread, Comment
@@ -34,8 +34,9 @@ def post_thread():
             category_id=request.json["category_id"],
             views=0,
             content=request.json["content"],
-            created_at=datetime.now(),
-            updated_at=datetime.now())
+            # does this have to be in UTC
+            created_at=datetime.utcnow(),
+            updated_at=datetime.utcnow())
         db.session.add(thread)
         db.session.commit()
         return thread.to_JSON()
@@ -50,7 +51,7 @@ def put_thread():
         "title":request.json["title"],
         "description":request.json["description"],
         "content":request.json["content"],
-        "updated_at":datetime.now()
+        "updated_at":datetime.utcnow()
     }, synchronize_session="fetch")
     db.session.commit()
     thread = Thread.query.get(id)

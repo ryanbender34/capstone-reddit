@@ -34,25 +34,28 @@ const Comment = () => {
 		dispatch(getComments({ threadId }))
 	}, [dispatch, threadId])
 
-	// const dateConverter = (updatedAt) => {
-	// 	const currentDate = new Date();
-	// 	const commentDate = Date.parse(updatedAt)
-	// 	// const currentSeconds = Date.parse(currentDate)
-	// 	// todo convert comment to UTC
+	const dateConverter = (date) => {
+        // date comes in GMT 
+        // todo - is it necessary to convert to UTC string now
+        const currentDate = new Date();
+        const currentDateToGMT = currentDate.toUTCString();
+        const parsedCurrent = Date.parse(currentDateToGMT);
+        const parsedInput = Date.parse(date);
+        const difference = parsedCurrent - parsedInput
 
-	// 	let seconds = ((currentDate - (commentDate + 21599000)) / 1000)
+		let seconds = ((difference) / 1000)
 
-	// 	var d = Math.floor(seconds / (3600 * 24));
-	// 	var h = Math.floor(seconds % (3600 * 24) / 3600);
-	// 	var m = Math.floor(seconds % 3600 / 60);
-	// 	var s = Math.floor(seconds % 60);
+		var d = Math.floor(seconds / (3600 * 24));
+		var h = Math.floor(seconds % (3600 * 24) / 3600);
+		var m = Math.floor(seconds % 3600 / 60);
+		var s = Math.floor(seconds % 60);
 
-	// 	var dDisplay = d > 0 ? d + (d === 1 ? " day " : " days ") : "";
-	// 	var hDisplay = ((h > 0) && (d === 0)) ? h + (h === 1 ? " hour " : " hours ") : "";
-	// 	var mDisplay = ((m > 0) && (h === 0)) ? m + (m === 1 ? " minute " : " minutes ") : "";
-	// 	var sDisplay = ((s > 0) && ((m === 0))) ? s + (s === 1 ? " second" : " seconds") : "";
-	// 	return dDisplay + hDisplay + mDisplay + sDisplay;
-	// }
+		var dDisplay = d > 0 ? d + (d === 1 ? " day " : " days ") : "";
+		var hDisplay = ((h > 0) && (d === 0)) ? h + (h === 1 ? " hour " : " hours ") : "";
+		var mDisplay = ((m > 0) && (h === 0)) ? m + (m === 1 ? " minute " : " minutes ") : "";
+		var sDisplay = (((m === 0) && (h === 0) && (d === 0))) ?  "seconds" : "";
+		return dDisplay + hDisplay + mDisplay + sDisplay;
+	}
 
 	const handleCancelClick = (e) => {
 		e.preventDefault();
@@ -226,8 +229,8 @@ const Comment = () => {
 							<li key={`container-for-${comment.id}`} className={`comment-parent comment-parent-${comment.id}`}>
 								<div className={`comment-list comment-${comment.id}`} key={comment.id}>
 									<div className="comments-text">
-										{/* <p className="comment-username">{comment.username} <span className="updated-tag">updated {dateConverter(comment.updatedAt)} ago</span></p> */}
-										<p className="comment-username">{comment.username}</p>
+										<p className="comment-username">{comment.username} <span className="updated-tag">updated {dateConverter(comment.updatedAt)} ago</span></p>
+										{/* <p className="comment-username">{comment.username}</p> */}
 										<p className={`comment-body comment-body-${comment.id}`} id={comment.id} suppressContentEditableWarning={true} onChange={(e) => setComment(e.target.value)}>{comment.content}</p>
 									</div>
 									<div className="comments-btns">

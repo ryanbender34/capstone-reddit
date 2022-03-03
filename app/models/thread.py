@@ -12,8 +12,8 @@ class Thread(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey( "categories.id"), nullable=False)
     views = db.Column(db.Integer, default=0)
     content= db.Column(db.Text)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
     user = db.relationship("User", backref="thread")
     category = db.relationship("Category", back_populates="thread")

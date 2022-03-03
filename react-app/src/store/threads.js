@@ -50,7 +50,7 @@ export const getThreads = function () {
 	}
 }
 
-export const postLike = function ({userId, threadId, vote}) {
+export const postLike = function ({userId, threadId, value}) {
 	return async (dispatch) => {
 		const response = await csrfFetch("/api/votes/", {
 			method: "POST",
@@ -60,8 +60,8 @@ export const postLike = function ({userId, threadId, vote}) {
 			body: JSON.stringify({
 				user_id: userId,
 				thread_id: threadId,
-				vote: vote
-			})
+				value
+			}),
 		})
 
 		if (response.ok) {
@@ -71,9 +71,9 @@ export const postLike = function ({userId, threadId, vote}) {
 	}
 }
 
-export const putLike = function ({userId, threadId, vote}) {
+export const putLike = function ({userId, threadId, value, voteId, voteIndex = null}) {
 	return async (dispatch) => {
-		const response = await csrfFetch("/api/votes/", {
+		const response = await csrfFetch(`/api/votes/`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json"
@@ -81,12 +81,15 @@ export const putLike = function ({userId, threadId, vote}) {
 			body: JSON.stringify({
 				user_id: userId,
 				thread_id: threadId,
-				vote: vote
+				value,
+				id: voteId
 			})
 		})
 
 		if (response.ok) {
+			// todo - this is an object
 			const vote = await response.json();
+			vote.voteIndex = voteIndex;
 			dispatch(likeThread(vote))
 		} else return ['No']
 	}
@@ -139,6 +142,7 @@ export const putThread = function ({ threadId, title, description, content }) {
 
 		if (response.ok) {
 			const thread = await response.json();
+			// todo - this propagates the action to the reducer
 			dispatch(editThread(thread));
 			return thread;
 		} else if (response.status < 500) {
@@ -192,9 +196,12 @@ export default function reducer(stateDotThreads = {}, action) {
 			delete updatedState[action.threadId];
 			return updatedState;
 		case LIKE_THREAD:
-			const threadId = action.vote.threadId
-			const spot = updatedState[threadId].votes
-			updatedState[threadId].votes[spot.length] = action.vote
+			const threadId = action.vote.threadId;
+			const voteIndex = action.vote.voteIndex;
+			const length = updatedState[threadId].votes.length;
+			delete action.vote['voteIndex'];
+			// voteIndex will be undefined only when we are posting
+			(voteIndex === undefined) ? updatedState[threadId].votes[length] = action.vote : updatedState[threadId].votes[voteIndex] = action.vote
 			return updatedState
 		default:
 			return stateDotThreads;

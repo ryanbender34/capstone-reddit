@@ -65,21 +65,21 @@ const ThreadPage = () => {
 	}
 
     const getTheDay = (date) => {
-        date = new Date();
-        const day = date.getDate();
+        const theDate = new Date(date);
+        const day = theDate.getDate();
         return day
     }
 
     const getWeekday = (date) => {
-        date = new Date();
-        const weekday = date.getDay();
+        const theDate = new Date(date);
+        const weekday = theDate.getDay();
         const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         return weekdays[weekday]
     }
 
     const getTheMonth= (date) => {
-        date = new Date();
-        const month = date.getMonth();
+        const theDate = new Date(date)
+        const month = theDate.getUTCMonth();
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         return months[month]
     }
@@ -118,7 +118,7 @@ const ThreadPage = () => {
                                 <span>Posted by {thread.username} in {catConverter(thread.categoryId)}</span>
                             </div>
                             <p className="thread-description" contentEditable={editable} suppressContentEditableWarning={true}>{thread.description}</p>
-                            <p className="thread-content" contentEditable={editable} suppressContentEditableWarning={true}>{thread.content}</p>
+                            <p className="thread-content" contentEditable={editable} suppressContentEditableWarning={true}>{thread.content.replace(/\n+/g, `\n\n`)}</p> 
                             {(errors.length > 0) &&
                                 <div>
                                     {errors.map((error, ind) => (

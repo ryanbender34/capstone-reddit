@@ -8,17 +8,18 @@ class Vote(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     thread_id = db.Column(db.Integer, db.ForeignKey("threads.id"), nullable=False)
-    vote = db.Column(db.Integer, nullable=False)
+    value = db.Column(db.Integer, nullable=False)
 
     user = db.relationship("User", backref="vote")
-    thread = db.relationship("Thread", backref="vote")
+    thread = db.relationship("Thread", back_populates="votes")
+
 
     def to_dict(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
             'thread_id': self.thread_id,
-            'vote': self.vote
+            'value': self.value
         }
     
     def to_JSON(self):
@@ -26,5 +27,5 @@ class Vote(db.Model):
             'id': self.id,
             'userId': self.user_id,
             'threadId': self.thread_id,
-            'vote': self.vote
+            'value': self.value
         }

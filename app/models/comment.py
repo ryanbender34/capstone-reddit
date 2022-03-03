@@ -7,12 +7,12 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    thread_id = db.Column(db.Integer, db.ForeignKey( "threads.id"), nullable=False)
+    thread_id = db.Column(db.Integer, db.ForeignKey("threads.id"), nullable=False)
     reply = db.Column(db.Integer, default=None)
     content = db.Column(db.Text, nullable=False)
     vote = db.Column(db.Integer, nullable=False, default=0)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
     author = db.relationship("User", backref="comment")
     thread = db.relationship("Thread", back_populates="comments")
