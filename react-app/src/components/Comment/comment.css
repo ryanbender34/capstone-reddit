@@ -29,12 +29,13 @@
 .comment-username {
     color: darkblue;
     font-weight: bold;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
 }
 
 .reply-username {
     color: maroon;
-    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
 }
 
 .reply-text > p {
@@ -50,6 +51,8 @@
 .reply-btn {
     display: flex;
     align-items: space-between;
+    color: #000;
+    font: 76% Verdana,Arial,Helvetica,sans-serif;
 }
 
 .reply-btns {
@@ -71,6 +74,7 @@
     color: gray;
     font-size: 14px;
     padding-left: 1vw;
+    font: 99% Verdana,Arial,Helvetica,sans-serif;
 }
 
 .comment-count {
@@ -118,10 +122,15 @@
     background-color: #3e3e3e;
     border-radius: 6px;
 }
-.discard-comment-button:active {
-    box-shadow: 0 0 5px #030303;
+
+.comments-text, .reply-text {
+    font-family: 'Open Sans', sans-serif;
+    color: #000;
+    font: 76% Verdana,Arial,Helvetica,sans-serif;
 }
 
-.comments-text {
-    font-family: 'Open Sans', sans-serif;
+.comment-btn {
+    padding-left: 0;
+    color: #000;
+    font: 76% Verdana,Arial,Helvetica,sans-serif;
 }

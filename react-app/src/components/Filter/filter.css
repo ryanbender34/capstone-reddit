@@ -1,0 +1,33 @@
+.filter-container {
+    display: flex;
+    margin-left: 4%;
+    max-width: 30%;
+}
+
+.filter-option {
+    display: inline-flex;
+    text-transform: capitalize;
+    margin-right: 8px;
+    position: relative;
+    /* border: 1px solid transparent; */
+    border: 1px solid red;
+    color: var(--newCommunityTheme-actionIcon);
+    fill: var(--newCommunityTheme-actionIcon);
+    min-height: unset;
+    min-width: unset;
+    padding: 6px 8px;
+    border-radius: 20px;
+    font-family: Noto Sans,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: unset;
+    line-height: 17px;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+}
+
+.filter-option:hover {
+    background-color: lightgrey;
+}

@@ -4,12 +4,14 @@ import session from './session';
 import threads from './threads';
 import categories from './categories';
 import comments from './comments';
+import search from './search';
 
 const rootReducer = combineReducers({
   session,
   threads,
   categories,
-  comments
+  comments,
+  search
 });
 
 

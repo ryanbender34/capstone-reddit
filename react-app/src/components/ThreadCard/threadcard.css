@@ -78,8 +78,8 @@
 }
 
 .thread-column-2:hover {
-    border: 1px solid rgb(27, 27, 173);
-    background-color: rgb(247, 247, 136);
+    /* border: 1px solid rgb(27, 27, 173); */
+    /* background-color: rgb(247, 247, 136); */
 }
 
 .thread-header-text {
@@ -101,4 +101,15 @@ a:hover {
 
 .thread-link {
     border: 1px solid red;
+}
+
+.column-holder {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.column-holder:hover {
+    border: 1px solid rgb(27, 27, 173);
+    /* border: 1px solid darkgray; */
+
 }

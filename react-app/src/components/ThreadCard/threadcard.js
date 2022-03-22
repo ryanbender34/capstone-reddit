@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import catConverter from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import './threadcard.css';
@@ -7,8 +7,8 @@ import { postLike, putLike } from '../../store/threads';
 
 const ThreadCard = ({ thread }) => {
     const dispatch = useDispatch();
+    // const {categoryId} = useParams();
     const user = useSelector((state) => state.session?.user);
-    const threads = useSelector(state => state.threads);
     // todo - improve this? 
     let voteCount = 0;
     let id = thread.id;
@@ -18,14 +18,18 @@ const ThreadCard = ({ thread }) => {
             commentsArr.push(thread.comments[key])
         }
     }
-    // for (const key in thread.votes) {
-    //     voteCount += thread.votes[key].value
-    // }
 	const userId = user?.id
     // // todo - should this useState? 
     let userVote = null;
     let voteId = null;
     let voteIndex = null;
+    // let threadIndex = null;
+    // const catThreads = useSelector(state => state.categories.active?.threads)
+    // catThreads?.forEach((aThread, i) => {
+    //     if (aThread.id === thread.id) {
+    //         threadIndex = i;
+    //     }
+    // })
     thread.votes?.forEach((vote, i) => {
         voteCount += vote.value;
         if (vote.userId === userId) {
@@ -40,15 +44,15 @@ const ThreadCard = ({ thread }) => {
             let userDownvote = document.querySelector(`.down-${id}`);
             console.log(userVote, id, 'the vote and the ID')
 
-            if (userVote == 1) {
+            if (userVote === 1) {
                 userUpvote.style.color = 'green';
                 userDownvote.style.color = 'black';
-            } else if (userVote == 0) {
+            } else if (userVote === 0) {
                 let clearUp = document.querySelector(`.up-${id}`);
                 clearUp.style.color = 'black';
                 let clearDown = document.querySelector(`.down-${id}`);
                 clearDown.style.color = 'black';
-            } else if (userVote == -1) {
+            } else if (userVote === -1) {
                 userDownvote.style.color = 'red';
                 userUpvote.style.color = 'black'
             }
@@ -79,15 +83,15 @@ const ThreadCard = ({ thread }) => {
         }
 
     const postVote = async (threadId, value) => {
-        console.log(userId, threadId, value, 'testing inputs FE')
+        // console.log(userId, threadId, value, 'testing inputs FE')
         // todo - this dispatch makes the inner returned thunk get called with the right agruments. first you dispatch the thunk action creator and then you dispatch the action. 
         // if the thunk action creator returns a function, then you must manually call dispatch. The whole point of redux-thunk is to control the dispatches manually. 
-        dispatch(postLike({userId, threadId, value}))
+        dispatch(postLike({userId, threadId, value}));
     }
 
     const updateVote = async (threadId, value) => {
-        console.log(userId, threadId, value, voteId, voteIndex, 'checking FE PUT inputs')
-         dispatch(putLike({userId, threadId, value, voteId, voteIndex}))
+        // console.log(userId, threadId, value, voteId, voteIndex, 'checking FE PUT inputs')
+         dispatch(putLike({userId, threadId, value, voteId, voteIndex}));
     }
 
     // todo delete all code related to deleting votes from the db

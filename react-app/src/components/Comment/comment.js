@@ -48,7 +48,7 @@ const Comment = () => {
 		var d = Math.floor(seconds / (3600 * 24));
 		var h = Math.floor(seconds % (3600 * 24) / 3600);
 		var m = Math.floor(seconds % 3600 / 60);
-		var s = Math.floor(seconds % 60);
+		// var s = Math.floor(seconds % 60);
 
 		var dDisplay = d > 0 ? d + (d === 1 ? " day " : " days ") : "";
 		var hDisplay = ((h > 0) && (d === 0)) ? h + (h === 1 ? " hour " : " hours ") : "";
@@ -234,9 +234,9 @@ const Comment = () => {
 										<p className={`comment-body comment-body-${comment.id}`} id={comment.id} suppressContentEditableWarning={true} onChange={(e) => setComment(e.target.value)}>{comment.content}</p>
 									</div>
 									<div className="comments-btns">
-										<button className={`reply-btn-${comment.id}`} value={comment.id} onClick={(e) => activeReply(e, comment.id)}>Reply</button>
-										<button hidden={(!(userId === comment.authorId) || (editable))} onClick={(e) => activeEdit(e, comment.id)}>Edit</button>
-										<button hidden={(!(userId === comment.authorId) || editable)} onClick={() => removeComment(comment.id)}>Delete</button>
+										<button className={`comment-btn reply-btn-${comment.id}`} value={comment.id} onClick={(e) => activeReply(e, comment.id)}>Reply</button>
+										<button className="comment-btn" hidden={(!(userId === comment.authorId) || (editable))} onClick={(e) => activeEdit(e, comment.id)}>Edit</button>
+										<button className="comment-btn" hidden={(!(userId === comment.authorId) || editable)} onClick={() => removeComment(comment.id)}>Delete</button>
 									</div>
 									{(showReplyForm && (comment.id === replyValue)) ?
 										<div className="reply-form">
@@ -267,13 +267,12 @@ const Comment = () => {
 											<li key={`container-for-${reply.id}`} className={`reply-parent reply-parent-${reply.id}`}>
 												<div className={`reply-list reply-${reply.id}`} key={reply.id}>
 													<div className="reply-text">
-														{/* <p className="reply-username">{reply.username} <span className="updated-tag">updated {dateConverter(reply.updatedAt)} ago</span></p> */}
-														<p className="reply-username">{reply.username} </p>
+														<p className="reply-username">{reply.username} <span className="updated-tag">updated {dateConverter(reply.updatedAt)} ago</span></p>
 														<p className={`reply-body reply-body-${reply.id}`} id={reply.id} contentEditable='false' suppressContentEditableWarning={true} onChange={(e) => setComment(e.target.value)}>{reply.content}</p>
 													</div>
 													<div className="reply-btns">
-														<button hidden={(!(userId === reply.authorId) || (editable))} onClick={(e) => activeEditReply(e, reply.id)}>Edit</button>
-														<button hidden={(!(userId === reply.authorId) || (editable))} onClick={() => removeComment(reply.id)}>Delete</button>
+														<button className="reply-btn" hidden={(!(userId === reply.authorId) || (editable))} onClick={(e) => activeEditReply(e, reply.id)}>Edit</button>
+														<button className="reply-btn" hidden={(!(userId === reply.authorId) || (editable))} onClick={() => removeComment(reply.id)}>Delete</button>
 													</div>
 													{(editable === reply.id) &&
 														<div key={`editbtns-${reply.id}`} hidden={(!(userId === reply.authorId))}>

@@ -20,6 +20,10 @@ def validation_errors_to_error_messages(validation_errors):
 def get_threads():
     return jsonify([thread.to_JSON() for thread in Thread.query.all()])
 
+@thread_routes.route("/<int:cat_id>", methods=["GET"])
+def get_cat_threads():
+    return jsonify([thread.to_JSON() for thread in Thread.query.filter(cat_id == Thread.category_id)])
+
 
 @thread_routes.route('/', methods=["POST"])
 @login_required

@@ -10,7 +10,8 @@ class Comment(db.Model):
     thread_id = db.Column(db.Integer, db.ForeignKey("threads.id"), nullable=False)
     reply = db.Column(db.Integer, default=None)
     content = db.Column(db.Text, nullable=False)
-    vote = db.Column(db.Integer, nullable=False, default=0)
+    # todo - why is vote here? 
+    vote = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 

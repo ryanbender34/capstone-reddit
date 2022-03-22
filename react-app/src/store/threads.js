@@ -1,6 +1,7 @@
 import { csrfFetch } from "../helpers";
 
 const LOAD_THREADS = "threads/LOAD_THREADS";
+// const LOAD_CAT_THREADS = "threads/LOAD_CAT_THREADS"
 const CREATE_THREAD = "threads/CREATE_THREAD";
 const EDIT_THREAD = "threads/EDIT_THREAD";
 const TRASH_THREAD = "threads/TRASH_THREAD";
@@ -11,6 +12,11 @@ const loadThreads = (threads) => ({
 	type: LOAD_THREADS,
 	threads
 })
+
+// const loadCatThreads = (catThreads) => ({
+// 	type: LOAD_CAT_THREADS,
+// 	catThreads
+// })
 
 const createThread = (thread) => ({
 	type: CREATE_THREAD,
@@ -31,6 +37,7 @@ const likeThread = (vote) => ({
 	type: LIKE_THREAD,
 	vote
 })
+
 
 // const trashVote = (index) => ({
 // 	type: TRASH_VOTE,
@@ -56,6 +63,24 @@ export const getThreads = function () {
 	}
 }
 
+// export const getCatThreads = function (catId) {
+// 	return async (dispatch) => {
+// 		const response = await fetch(`/api/threads/${catId}`);
+		
+// 		if (response.ok) {
+// 			const catThreads = await response.json();
+// 			dispatch(loadThreads(catThreads));
+// 		} else if (response.status < 500) {
+// 			const data = await response.json();
+// 			if (data.errors) {
+// 				return data.errors;
+// 			}
+// 		} else {
+// 			return ['An error occurred. Please try again.'];
+// 		}
+// 	}
+// }
+
 export const postLike = function ({userId, threadId, value}) {
 	return async (dispatch) => {
 		const response = await csrfFetch("/api/votes/", {
@@ -72,6 +97,7 @@ export const postLike = function ({userId, threadId, value}) {
 
 		if (response.ok) {
 			const vote = await response.json();
+			console.log(vote, vote.threadId, 'hmm')
 			dispatch(likeThread(vote))
 		} else return ['No']
 	}
@@ -218,6 +244,12 @@ export default function reducer(stateDotThreads = {}, action) {
 				updatedState[thread.id] = thread;
 			})
 			return updatedState;
+		// case LOAD_CAT_THREADS:
+		// 	updatedState = undefined;
+		// 	action.catThreads.forEach(thread => {
+		// 		updatedState[thread.id] = thread
+		// 	})
+		// 	return updatedState
 		case CREATE_THREAD:
 		case EDIT_THREAD:
 			updatedState[action.thread.id] = action.thread;
@@ -229,6 +261,7 @@ export default function reducer(stateDotThreads = {}, action) {
 			const threadId = action.vote.threadId;
 			const voteIndex = action.vote.voteIndex;
 			const length = updatedState[threadId].votes.length;
+			// todo - is this necessary? 
 			delete action.vote['voteIndex'];
 			// voteIndex will be undefined only when we are posting
 			(voteIndex === undefined) ? updatedState[threadId].votes[length] = action.vote : updatedState[threadId].votes[voteIndex] = action.vote

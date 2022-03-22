@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import LoginSignup from '../auth/LoginSignup';
 import './NavBar.css';
+import SearchBar from '../SearchBar/searchbar';
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
@@ -26,6 +27,12 @@ const NavBar = () => {
               Football
             </NavLink>
           </li>
+          <li className='topnav'>
+            <NavLink to={`/categories/3`} exact={true}>
+              Baseball
+            </NavLink>
+          </li>
+        <SearchBar></SearchBar>
         </ul>
         <ul className='user-options'>
           {/* {(user) ? <NavLink className='logged-in' to={`/users/${user.id}`}>Welcome, {user.username}!</NavLink> : ''} */}

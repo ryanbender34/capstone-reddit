@@ -7,15 +7,21 @@ vote_routes = Blueprint('/votes', __name__)
 @vote_routes.route('/', methods=["POST"])
 @login_required
 def add_vote():
-    userVote = Vote(
-        user_id=request.json["user_id"],
-        thread_id=request.json["thread_id"],
-        value=request.json["value"])
+    u_id = request.json["user_id"]
+    t_id = request.json["thread_id"]
+    the_vote = db.session.query(Vote).filter(Vote.user_id == u_id, Vote.thread_id == t_id).first()
+    if the_vote:
+        return {"errors": ["vote already exists"]}
+    else:
+        userVote = Vote(
+            user_id=request.json["user_id"],
+            thread_id=request.json["thread_id"],
+            value=request.json["value"])
 
-    db.session.add(userVote)
-    db.session.commit()
-    # todo - what does synchronize_session = "fetch" do? 
-    return userVote.to_JSON()
+        db.session.add(userVote)
+        db.session.commit()
+        # todo - what does synchronize_session = "fetch" do? 
+        return userVote.to_JSON()
 
 @vote_routes.route('/', methods=["PUT"])
 @login_required
@@ -37,15 +43,4 @@ def put_vote():
     else: 
         return make_response({"errors": ["Edit on non-existent vote"]})
 
-# @vote_routes.route('/', methods=["DELETE"])
-# @login_required
-# def trash_vote():
-#     id = request.json["id"]
-#     vote = Vote.query.get(id)
-#     if vote:
-#         db.session.query(Vote).filter(Vote.id == id).delete(
-#             synchronize_session="fetch")
-#         db.session.commit()
-#         return {"errors": False}
-#     else:
-#         return make_response({"errors": ["delete on non-existent vote"]})
+

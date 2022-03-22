@@ -52,8 +52,10 @@ const Create = () => {
                     <input type="hidden" name="csrf_token" value={Cookies.get('XSRF-TOKEN')} />
                     <label htmlFor='category'>Choose a Category: </label>
                     <select name='category' value={categoryId} id='category' form='thread' onChange={(e) => setCategoryId(e.target.value)}>
+                        {/* todo - make this a list of all categories */}
                         <option value={1}>Basketball</option>
-                        <option value={2}>Football</option>                        
+                        <option value={2}>Football</option>   
+                        <option value={3}>Baseball</option>                     
                     </select>
                     <label htmlFor='title'>Title: </label>
                     <input type='text' value={title} onChange={(e) => setTitle(e.target.value)} id='title' placeholder='thread title...' required></input>

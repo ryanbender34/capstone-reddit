@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import Home from './components/Home/home'
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar-top/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import CategoryPage from './components/CategoryPage/category';
 import ThreadPage from './components/ThreadPage/threadpage';
@@ -13,6 +13,11 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import FourOhFour from './components/FourOhFour/fourohfour';
+import Hot from './components/Hot/hot';
+import Best from './components/Best/best';
+import CatHot from './components/CatHot/cathot';
+import CatBest from './components/CatBest/catbest';
+import SearchView from './components/SearchView/searchview';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,8 +56,26 @@ function App() {
         <Route path='/' exact={true} >
           <Home></Home>
         </Route>
+        <Route path='/new' exact={true} >
+          <Home />
+        </Route>
+        <Route path='/hot' exact={true}>
+          <Hot></Hot>
+        </Route>
+        <Route path='/best' exact={true}>
+          <Best></Best>
+        </Route>
+        <Route path='/search/:query' exact={true}>
+          <SearchView />
+        </Route>
         <Route path='/categories/:categoryId' exact={true} >
           <CategoryPage />
+        </Route>
+        <Route path='/categories/:categoryId/hot' exact={true}>
+          <CatHot></CatHot>
+        </Route>
+        <Route path='/categories/:categoryId/best' exact={true}>
+          <CatBest></CatBest>
         </Route>
         <Route path='/threads/:threadId' exact={true} >
           <ThreadPage />

@@ -4,11 +4,11 @@ import { useParams, useLocation } from 'react-router-dom';
 import { selectCategory } from '../../store/categories';
 import catConverter from '../../utils';
 import ThreadCard from '../ThreadCard/threadcard';
-import './category.css';
+import './catbest.css';
 import CategoryFilter from '../CategoryFilter/catfilter';
 import { getThreads } from '../../store/threads';
 
-const CategoryPage = () => {
+const CatBest = () => {
     const {categoryId} = useParams()
 	const catId = parseInt(categoryId, 10)
 	const dispatch = useDispatch();
@@ -29,6 +29,18 @@ const CategoryPage = () => {
 
     const curThreadsArr = allThreadsArr.filter(thread => thread.categoryId === catId)
 
+    curThreadsArr.sort(function (a, b) {
+        let aCount = 0;
+        let bCount = 0;
+        a.votes.forEach(vote => {
+            aCount += vote.value
+        })
+        b.votes.forEach(vote => {
+            bCount += vote.value
+        })
+        return bCount - aCount
+    })
+
 
 
         return (
@@ -47,4 +59,4 @@ const CategoryPage = () => {
 
 };
 
-export default CategoryPage;
+export default CatBest;

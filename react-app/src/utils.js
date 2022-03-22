@@ -4,6 +4,8 @@ export default function catConverter (id) {
         category = 'basketball'
     } else if (id === 2) {
         category = 'football' 
-    } 
+    } else if (id === 3) {
+        category = 'baseball'
+    }
     return category;
 }

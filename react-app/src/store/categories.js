@@ -2,6 +2,7 @@ import { csrfFetch } from "../helpers";
 
 const LOAD_CATEGORIES = "categories/LOAD_CATEGORIES";
 const SET_CATEGORY = "categories/SET_CATEGORY";
+// const LIKE_FROM_CAT = "categories/LIKE_FROM_CAT";
 
 const loadCategories = (categories) => ({
 	type: LOAD_CATEGORIES,
@@ -12,6 +13,11 @@ const setCategory = (category) => ({
     type: SET_CATEGORY,
     category
 })
+
+// const likeFromCat = (vote) => ({
+// 	type: LIKE_FROM_CAT,
+// 	vote
+// })
 
 export const getCategories = function () {
 	return async (dispatch) => {
@@ -49,6 +55,52 @@ export const selectCategory = function (id) {
 	}
 }
 
+// export const catPostLike = function ({userId, threadId, value}) {
+// 	return async (dispatch) => {
+// 		const response = await csrfFetch("/api/categories/", {
+// 			method: "POST",
+// 			headers: {
+// 				"Content-Type": "application/json"
+// 			},
+// 			body: JSON.stringify({
+// 				user_id: userId,
+// 				thread_id: threadId,
+// 				value
+// 			})
+// 		})
+
+// 		if (response.ok) {
+// 			const vote = await response.json();
+// 			dispatch(likeFromCat(vote))
+// 		}
+// 	}
+// }
+
+// export const catPutLike = function ({userId, threadId, value, voteId, voteIndex = null, threadIndex = null}) {
+// 	return async (dispatch) => {
+// 		const response = await csrfFetch(`/api/categories/`, {
+// 			method: "PUT",
+// 			headers: {
+// 				"Content-Type": "application/json"
+// 			},
+// 			body: JSON.stringify({
+// 				user_id: userId,
+// 				thread_id: threadId,
+// 				value,
+// 				id: voteId
+// 			})
+// 		})
+
+// 		if (response.ok) {
+// 			// todo - this is an object
+// 			const vote = await response.json();
+// 			vote.threadIndex = threadIndex;
+// 			vote.voteIndex = voteIndex;
+// 			dispatch(likeFromCat(vote))
+// 		} else return ['No']
+// 	}
+// }
+
 export default function reducer(stateDotCategories = {}, action) {
 	let updatedState = { ...stateDotCategories };
 	switch (action.type) {
@@ -60,6 +112,15 @@ export default function reducer(stateDotCategories = {}, action) {
         case SET_CATEGORY:
             updatedState['active'] = action.category
             return updatedState;
+		// case LIKE_FROM_CAT:
+		// 	// const threadId = action.vote.threadId;
+		// 	console.log(action.vote, 'what do we have in state')
+		// 	const threadIndex = action.vote.threadIndex;
+		// 	const voteIndex = action.vote.voteIndex;
+		// 	const length = updatedState['active'].threads[threadIndex].votes?.length;
+		// 	(voteIndex === undefined) ? updatedState['active'].threads[threadIndex].votes[length] = action.vote : updatedState[threadIndex].votes[voteIndex] = action.vote
+		// 	return updatedState;
+
 		default:
 			return stateDotCategories;
 	}
