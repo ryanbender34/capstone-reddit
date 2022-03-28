@@ -54,6 +54,7 @@ const ThreadPage = () => {
         const content = document.querySelector(".thread-content").innerHTML
         // todo - add current vote here
 		let data = { threadId, title, description, content }
+        console.log(data, 'what is happening to our thread data FE')
         if (title && content) {
             dispatch(putThread(data))
             setErrors([]);

@@ -21,7 +21,11 @@
 }
 
 .threadcreatebtn {
-    padding: 1% 0 1% 4%;
+    all: none;
+    border: 2px solid blue;
+    background-color: lightgrey;
+    border-radius: 5%;
+    margin: 1% 0 1% 4%;
 }
 
 

@@ -4,12 +4,17 @@ import { getThreads } from '../../store/threads';
 import { getCategories } from '../../store/categories';
 import ThreadCard from '../ThreadCard/threadcard';
 import './hot.css';
-import Create from '../Create/create';
 import Filter from '../Filter/filter';
+import Welcome from '../Welcome/welcome';
 
 const Hot = () => {
     const dispatch = useDispatch();
     // window.scrollTo(0,0);
+
+    let hotFilter = document.querySelector('.filter-option-hot');
+    if (hotFilter) {
+        hotFilter.style.backgroundColor = '#E0E0E0'
+    }
     
     useEffect(() => {
         dispatch(getThreads());
@@ -31,14 +36,14 @@ const Hot = () => {
     return (
         <>
         <div className="home-container">
+            <Welcome />
             <div className="thread-container">
-            <Create></Create>
-            <Filter></Filter>
-                {allThreadsArr.map(thread => {
-                    return (
-                        <ThreadCard key ={thread.id} thread={thread}></ThreadCard>
-                    )
-                })}
+                <Filter></Filter>
+                    {allThreadsArr.map(thread => {
+                        return (
+                            <ThreadCard key ={thread.id} thread={thread}></ThreadCard>
+                        )
+                    })}
             </div>
         </div>
         </>

@@ -38,9 +38,12 @@ const Create = () => {
         setErrors([])
     }
 
+    // todo - make this a link
+    // const loginLink = <NavLink href='/login' exact={true} > Login </NavLink>
+
     return (
         <>
-            <button className='threadcreatebtn' hidden={createStatus} onClick={user ? () => setCreateStatus(true) : () => setErrors(['Please log in to start a thread'])}>Create new thread</button>
+            <button className='threadcreatebtn' hidden={createStatus} onClick={user ? () => setCreateStatus(true) : () => setErrors([`Please login to start a thread`])}>Create new thread</button>
             {(errors.length > 0) && errors?.map((err, i) => {
                 return <p key={i} className='anerror' >{err}</p>
             })}

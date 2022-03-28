@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getSearchThreads } from '../../store/search';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './searchbar.css';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -19,20 +21,25 @@ const SearchBar = () => {
 
     return(
         <>
-            <form action='/api/search/' method='GET'>
+        <div className='search-container'>
+            <form onSubmit={(e) => searchSubmit(e)} action='/api/search/' className='search-form' method='GET'>
+                
                 <input
                     id='search-input'
                     type='text'
-                    placeholder="thread title..."
+                    placeholder='search by title...'
                     className='search-bar'
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     required
                 />
-                <button type='submit' onClick={searchSubmit}>
-                    <img id='search-icon' src='https://res.cloudinary.com/jenn/image/upload/v1644450194/teachables/magnifier_dzmddk.png' alt='Search icon' className='search-button' onClick={searchSubmit}/>
-                </button>
+                <label className='form-label'> 
+                    <div className="search-icon">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} onClick={(e) => searchSubmit(e)} />
+                    </div>
+                </label>
             </form>
+        </div>
         </>
     )
 };

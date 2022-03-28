@@ -7,5 +7,5 @@ class ThreadForm(FlaskForm):
     user_id= IntegerField('User ID')
     title= StringField('Title', validators=[Length(max=50, message="Please limit title to 50 characters")])
     description= StringField('Description', validators=[Length(max=255, message="Please limit description to 255 characters")])
-    category_id= SelectField("Category", choices=[(1, 'basketball'), (2, 'football')])
+    category_id= SelectField("Category", choices=[(1, 'basketball'), (2, 'football'), (3, 'baseball')])
     content= TextAreaField('Content', validators=[DataRequired(message='thread must contain content')])

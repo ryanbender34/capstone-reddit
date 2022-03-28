@@ -43,13 +43,14 @@
     padding-right: 20px;
     padding-top: 6px;
     padding-bottom: 6px;
-    margin-top: 5px;
+    margin-top: 7px;
     margin-bottom: 12px;
     border-radius: 6px;
     font-size: 20px;
     font-weight: bold;
     color: black;
     box-shadow: 0 0 1px #030303;
+    min-width: 164px;
     /* text-shadow: 0 0 4px #030303; */
 }
 .auth-btn:active {
@@ -85,6 +86,7 @@
     color: black;
     padding-bottom: 2px;
     border-bottom: 1.5px solid #030303;
+    white-space: nowrap;
 }
 .auth-link:hover {
 	cursor: pointer;

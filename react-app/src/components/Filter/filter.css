@@ -10,7 +10,6 @@
     margin-right: 8px;
     position: relative;
     /* border: 1px solid transparent; */
-    border: 1px solid red;
     color: var(--newCommunityTheme-actionIcon);
     fill: var(--newCommunityTheme-actionIcon);
     min-height: unset;
@@ -26,8 +25,4 @@
     box-sizing: border-box;
     justify-content: center;
     text-align: center;
-}
-
-.filter-option:hover {
-    background-color: lightgrey;
 }

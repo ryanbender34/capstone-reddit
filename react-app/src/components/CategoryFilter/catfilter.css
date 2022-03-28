@@ -28,5 +28,9 @@
 }
 
 .filter-option:hover {
-    background-color: lightgrey;
+    background-color: #808080;
+}
+
+.filter-text {
+    padding-left: 3px;
 }

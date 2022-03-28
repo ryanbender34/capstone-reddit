@@ -1,9 +1,13 @@
 #search-input {
-    border: 1px solid #eee;
+    border: 1px solid #000;
+    border-radius: 5%;
     align-self: center;
     font-weight: normal;
     margin-top: auto;
     margin-bottom: auto;
+    height: 25px;
+    width: 100%;
+    min-width: 40px;
 }
 #search-input:focus {
     border: 1px solid #3e3e3e;
@@ -11,9 +15,42 @@
 }
 
 #search-icon {
-    height: 16px;
     transform: scaleX(-1);
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
+    padding: auto;
     align-self: center;
+}
+
+.search-container {
+    display: block;
+    width: calc(100px + 20%);
+    max-width: 225px;
+}
+
+.search-form {
+    box-sizing: border-box;
+    display: flex;
+    background-color: var(--newRedditTheme-field);
+    border-radius: 4px;
+    border: 1px solid var(--newRedditTheme-line);
+    box-shadow: none;
+}
+
+.form-label {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    color: white;
+    /* --canvas: #DAE0E6; */
+}
+
+.search-icon {
+    padding-left: 4px;
+}
+
+.search-icon:hover {
+    cursor: pointer;
 }

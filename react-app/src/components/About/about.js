@@ -5,7 +5,7 @@ const About = () => {
         <div className="about-container">
                 <h1 className="about-header">Welcome to Scouttit!</h1>
                 <h2 className='about-title'>About</h2>
-                <p className='about-text'>Scouttit is a reddit inspired website where users can create threads to start discussions about amateur prospects in various sports. About it is deployed to heroku where users can interact with the site. Currently users can create threads, comment, and reply on threads. In the future, Scouttit will add the ability to vote on threads, search for threads, and show more information to the users to gauge thraed activity levels.</p>
+                <p className='about-text'>Scouttit is a reddit inspired website where users can create threads to start discussions about amateur prospects in various sports. Scout it is deployed to heroku where users can interact with the site. Currently users can create threads, comment, reply, vote, filter, filter by category, and search for threads.</p>
                 <br />
                 <div className='dev-info'> 
                 <div className='dev-info-container'></div>

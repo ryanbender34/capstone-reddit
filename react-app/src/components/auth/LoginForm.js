@@ -61,7 +61,7 @@ const LoginForm = () => {
           />
           <button type='submit'>Login</button>
           <div className="auth-btn">
-            <p className="new-link">New to Scouttit?  <Link to='/sign-up' className='signup-link' ><span className='auth-link'>Sign Up!</span></Link></p>
+            <p className="new-link">New to Scouttit?  <Link to='/sign-up' className='signup-link' ><span className='auth-link'>Sign-Up!</span></Link></p>
             <p><span className='auth-link' onClick={e => dispatch(demoLogin())}>Demo User</span></p>
         </div>
       </form>

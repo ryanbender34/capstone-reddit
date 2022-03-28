@@ -42,7 +42,6 @@ const ThreadCard = ({ thread }) => {
         useEffect(() => {
             let userUpvote = document.querySelector(`.up-${id}`);  
             let userDownvote = document.querySelector(`.down-${id}`);
-            console.log(userVote, id, 'the vote and the ID')
 
             if (userVote === 1) {
                 userUpvote.style.color = 'green';
@@ -77,7 +76,7 @@ const ThreadCard = ({ thread }) => {
     
             var dDisplay = d > 0 ? d + (d === 1 ? " day " : " days ") : "";
             var hDisplay = ((h > 0) && (d === 0)) ? h + (h === 1 ? " hour " : " hours ") : "";
-            var mDisplay = ((m > 0) && (h === 0)) ? m + (m === 1 ? " minute " : " minutes ") : "";
+            var mDisplay = ((d === 0) && (m > 0) && (h === 0)) ? m + (m === 1 ? " minute " : " minutes ") : "";
             var sDisplay = (((m === 0) && (h === 0) && (d === 0))) ?  "seconds" : "";
             return dDisplay + hDisplay + mDisplay + sDisplay;
         }

@@ -1,4 +1,4 @@
-.about-header {
+.welcome-header {
     color: darkblue;
     font-size: 2.7em;
     font-style: italic;
@@ -9,7 +9,7 @@
     margin: 0;
 }
 
-.about-title {
+.welcome-title {
     color: #333;
     font-style: italic;
     font-size: 20px;
@@ -18,13 +18,13 @@
     margin: 0;
 }
 
-.about-container {
+.welcome-container {
     padding-left: 5%;
     /* background-image: url(); */
 }
 
 
-.about-text {
+.welcome-text {
     color: #333;
     font-size: 14px;
     padding: 15px 2.8% 4% 2%;
@@ -50,14 +50,14 @@
       font-size: 14px;
   }
 
-.about-dev-link {
+.welcome-dev-link {
     color: black;
     padding: 2px;
     padding-right: 12px;
     font-size: 13px;
 }
 
-.about-dev-link:hover {
+.welcome-dev-link:hover {
 font-weight: bold;
 }
 
@@ -75,4 +75,3 @@ font-weight: bold;
     cursor: pointer;
     /* animation-name: bounce; */
 }
-

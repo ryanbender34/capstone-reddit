@@ -4,12 +4,17 @@ import { getThreads } from '../../store/threads';
 import { getCategories } from '../../store/categories';
 import ThreadCard from '../ThreadCard/threadcard';
 import './best.css';
-import Create from '../Create/create';
+import Welcome from '../Welcome/welcome';
 import Filter from '../Filter/filter';
 
 const Best = () => {
     const dispatch = useDispatch();
     // window.scrollTo(0,0);
+
+    let bestFilter = document.querySelector('.filter-option-best');
+    if (bestFilter) {
+        bestFilter.style.backgroundColor = '#E0E0E0'
+    }
 
     useEffect(() => {
         dispatch(getThreads());
@@ -41,8 +46,8 @@ const Best = () => {
     return (
         <>
         <div className="home-container">
+            <Welcome />
             <div className="thread-container">
-            <Create></Create>
             <Filter></Filter>
                 {allThreadsArr.map(thread => {
                     return (
