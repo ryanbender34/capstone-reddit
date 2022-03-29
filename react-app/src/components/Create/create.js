@@ -49,8 +49,6 @@ const Create = () => {
             })}
             {createStatus &&
             <div className='threadform-container'>
-                <div className="errors-container">
-                </div>
                 <form id='threadform' action='/' onSubmit={handleSubmit}>
                     <input type="hidden" name="csrf_token" value={Cookies.get('XSRF-TOKEN')} />
                     <label htmlFor='category'>Choose a Category: </label>
