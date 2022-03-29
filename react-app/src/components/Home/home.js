@@ -48,7 +48,7 @@ const Home = () => {
                         })}
                 </div>
             </div>
-            <RichText />
+            {/* <RichText /> */}
         </div>
         </>
     )
