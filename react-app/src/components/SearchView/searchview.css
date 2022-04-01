@@ -14,6 +14,7 @@
     column-gap: 28px;
     grid-template-columns: 1fr 1fr 1fr; */
     justify-content: center;
+    max-width: 450px;
 }
 
 .explorer-cards {
@@ -32,6 +33,7 @@
     display: flex;
     column-gap: 28px;
     justify-content: center;
+    max-width: 450px;
 }
 
 .search-body-none {

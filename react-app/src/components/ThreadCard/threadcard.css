@@ -107,7 +107,6 @@ a:hover {
 .column-holder {
     border: 1px solid lightgray;
     border-radius: 4px;
-    min-width: 75%;
 }
 
 .column-holder:hover {

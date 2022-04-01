@@ -36,11 +36,13 @@ const CategoryPage = () => {
                 <div className='categoriespage-container'>
                     <h1 className="cat-header">s/{catConverter(catId)}</h1>
                     <CategoryFilter />
-                    {curThreadsArr?.map((thread, index) => {
-                        return (
-                            <ThreadCard key ={thread.id} thread={thread}> </ThreadCard>
-                        )
-                    })}
+                    <div className='thread-container'>
+                        {curThreadsArr?.map((thread, index) => {
+                            return (
+                                <ThreadCard key ={thread.id} thread={thread}> </ThreadCard>
+                            )
+                        })}
+                    </div>
                 </div >
             </>
         )
