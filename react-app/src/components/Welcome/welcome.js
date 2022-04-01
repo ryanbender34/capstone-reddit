@@ -1,5 +1,8 @@
+// import MyEditor from '../MyEditor/myEditor';
 import './welcome.css';
-import Create from '../Create/create';
+// import Create from '../Create/create';
+// this did not work... trying to copy the facebook / draft-js github docs now using MyEditor component
+import CreateRich from '../CreateRich/createrich';
 
 const Welcome = () => { 
     return (
@@ -13,7 +16,8 @@ const Welcome = () => {
                 {/* <NavLink to='/welcomeme' className='welcome-dev-link'>Welcome Me</NavLink> */}
                 <p className='welcome-text'>Get started by creating your first thread below! </p>
                 <br />
-                <Create />
+                <CreateRich />
+                {/* <MyEditor /> */}
                 <br />
                 <br />
                 </div>

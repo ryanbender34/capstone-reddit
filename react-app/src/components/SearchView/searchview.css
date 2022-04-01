@@ -32,7 +32,6 @@
     display: flex;
     column-gap: 28px;
     justify-content: center;
-    height: 65vh;
 }
 
 .search-body-none {

@@ -1,5 +1,7 @@
+from flask import jsonify
 from .db import db
 from datetime import datetime
+import json
 
 
 class Thread(db.Model):
@@ -11,7 +13,7 @@ class Thread(db.Model):
     description = db.Column(db.Text)
     category_id = db.Column(db.Integer, db.ForeignKey( "categories.id"), nullable=False)
     views = db.Column(db.Integer, default=0)
-    content= db.Column(db.Text)
+    content= db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
@@ -41,7 +43,7 @@ class Thread(db.Model):
             "description": self.description,
             "categoryId": self.category_id,
             "views": self.views,
-            "content": self.content,
+            "content": json.loads(self.content),
             "username": self.user.username,
             "comments":[comment.to_dict() for comment in self.comments],
             "votes":[vote.to_JSON() for vote in self.votes],

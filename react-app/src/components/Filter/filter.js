@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCalendar, faFireFlameCurved, faRocket} from '@fortawesome/free-solid-svg-icons'
 import './filter.css';
@@ -8,8 +7,6 @@ import './filter.css';
 
 
 const Filter = () => {
-    const {url} = useParams()
-    console.log(url, 'this is the url')
     
 return (
     <>

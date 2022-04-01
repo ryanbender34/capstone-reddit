@@ -97,7 +97,6 @@ export const postLike = function ({userId, threadId, value}) {
 
 		if (response.ok) {
 			const vote = await response.json();
-			console.log(vote, vote.threadId, 'hmm')
 			dispatch(likeThread(vote))
 		} else return ['No']
 	}
@@ -127,31 +126,7 @@ export const putLike = function ({userId, threadId, value, voteId, voteIndex = n
 	}
 }
 
-// export const deleteVote= function ({ voteId, voteIndex }) {
-// 	return async (dispatch) => {
-// 		const response = await csrfFetch("/api/votes/", {
-// 			method: "DELETE",
-// 			headers: {
-// 				"Content-Type": "application/json"
-// 			},
-// 			body: JSON.stringify({ id: voteId })
-// 		})
-
-// 		if (response.ok) {
-// 			dispatch(trashVote(voteIndex));
-// 			return true;
-// 		} else if (response.status < 500) {
-// 			const data = await response.json();
-// 			if (data.errors) {
-// 				return data.errors;
-// 			}
-// 		} else {
-// 			return ['An error occured. Please try again.'];
-// 		}
-// 	}
-// }
-
-export const postThread = function ({ userId, title, description, categoryId, content }) {
+export const postThread = function ({ userId, title, description, categoryId, convertedContent }) {
 	return async (dispatch) => {
 		const response = await fetch("/api/threads/", {
 			method: "POST",
@@ -163,7 +138,7 @@ export const postThread = function ({ userId, title, description, categoryId, co
 				title,
 				description,
 				category_id: categoryId,
-                content
+                content: convertedContent
 			})
 		})
 		if (response.ok) {

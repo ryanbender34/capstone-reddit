@@ -6,8 +6,6 @@ import ThreadCard from '../ThreadCard/threadcard';
 import './home.css';
 import Filter from '../Filter/filter';
 import Welcome from '../Welcome/welcome';
-import MyEditor from '../MyEditor/myEditor';
-import RichText from '../RichText/richtext';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -28,7 +26,6 @@ const Home = () => {
     const allThreads = useSelector(state => {return state.threads})
     const allThreadsArr = Object.values(allThreads)
 
-    console.log(allThreads, 'sorting this')
 
  
     // const projectsBasketball = Object.values(allThreads).filter(thread => thread.categoryId === 1)
@@ -48,7 +45,6 @@ const Home = () => {
                         })}
                 </div>
             </div>
-            {/* <RichText /> */}
         </div>
         </>
     )

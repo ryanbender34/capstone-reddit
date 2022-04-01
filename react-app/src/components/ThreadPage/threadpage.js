@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getThreads, putThread, deleteThread } from '../../store/threads';
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import catConverter from "../../utils";
 import Comment from '../Comment/comment';
 import FourOhFour from '../FourOhFour/fourohfour';
@@ -14,29 +16,40 @@ const ThreadPage = () => {
     const dispatch = useDispatch();
     const [editable, setEditable] = useState(false);
     const [deletePopUp, setDeletePopUp] = useState(false);
-    const [original, setOriginal] = useState('');
     const [errors, setErrors] = useState([]);
 
     const allThreads = useSelector(state => {return state.threads})
     const selectedThread = Object.values(allThreads).filter(thread => thread.id === parseInt(threadId))[0];
 
+     
     useEffect(() => {
         dispatch(getThreads());
     }, [dispatch])
 
-    let thisThread= [];
-
+    let thisThread = [];
+    
     const threads = useSelector(state => {
         return state.threads
     })
-
+    
     for (const key in threads) {
         if (key === threadId) thisThread.push(threads[key]);
     }
 
+
+    // might need to load this once the page has loaded? 
+    let thisPage = thisThread[0]
+    let thisContent = thisPage?.content
+    let contentState = convertFromRaw(thisContent)
+    // const threadState = EditorState.createWithContent(contentState)
+        // console.log(threadState, 'trying this is editor state now')
+    const [contentBeforeEdit, setContentBeforeEdit] = useState(EditorState.createWithContent(contentState));
+    const [editorState, setEditorState] = useState(EditorState.createWithContent(contentState))
+    // let convertedthing = convertFromRaw(JSON.parse(thisThread[0].content));
+    // console.log(convertedthing, 'here is the content after conversion')
+    
     const activeEdit = () => {
         setEditable(true)
-        setOriginal(document.querySelector('.thread-content').innerText)
     }
 
     function trashThread() {
@@ -51,7 +64,7 @@ const ThreadPage = () => {
 		// const updatedCommentBody = pendingComment.innerText;
         const title = document.querySelector(".thread-title").innerHTML
         const description = document.querySelector(".thread-description").innerHTML
-        const content = document.querySelector(".thread-content").innerHTML
+        const content = convertToRaw(editorState.getCurrentContent());
         // todo - add current vote here
 		let data = { threadId, title, description, content }
         console.log(data, 'what is happening to our thread data FE')
@@ -91,7 +104,10 @@ const ThreadPage = () => {
     }
 
     const cancelEdit = (e) => {
-        document.querySelector('.thread-content').innerText = original
+        // we need to reset the Editor component here
+        // set editorState to contentBeforeEdit
+        setEditorState(contentBeforeEdit);
+        // document.querySelector('.the-editor').setAttribute('editorState', contentBeforeEdit)
         setEditable(false);
     }
 
@@ -118,7 +134,17 @@ const ThreadPage = () => {
                                 <span>Posted by {thread.username} in {catConverter(thread.categoryId)}</span>
                             </div>
                             <p className="thread-description" contentEditable={editable} suppressContentEditableWarning={true}>{thread.description}</p>
-                            <p className="thread-content" contentEditable={editable} suppressContentEditableWarning={true}>{thread.content.replace(/\n+/g, `\n\n`)}</p> 
+                            <div className="thread-content" suppressContentEditableWarning={true}>
+                                <Editor 
+                                    // className="the-editor"
+                                    editorState={editorState}
+                                    toolbarHidden={!editable}
+                                    // toolbarHidden={!editable}
+                                    wrapperClassName="wrapperClassName"
+                                    editorClassName="editorClassName"
+                                    onEditorStateChange={editorState => setEditorState(editorState)} 
+                                    readOnly={!editable}/>
+                                </div> 
                             {(errors.length > 0) &&
                                 <div>
                                     {errors.map((error, ind) => (

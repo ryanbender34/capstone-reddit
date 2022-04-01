@@ -12,20 +12,17 @@ const CategoryFilter = () => {
     const lastUrl = urlParts[urlParts.length - 1]
 
     if ((lastUrl == "best" || lastUrl == "hot")) {
-        console.log('guess it is true then')
         let chosenFilter = document.querySelector(`.filter-option-${lastUrl}`);
         if(chosenFilter) {
             chosenFilter.style.backgroundColor = '#E0E0E0';
         }
     } else {
-        console.log('made it to else FE')
         let newFilter = document.querySelector(`.filter-option-new`)
         if(newFilter) {
             newFilter.style.backgroundColor = '#E0E0E0'
         }
     }
 
-    console.log(urlParts, 'this is theurl')
 return (
     <>
         <div className="filter-container">
