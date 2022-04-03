@@ -132,7 +132,6 @@ def seed_threads():
     }))
 
     g = Thread(user_id=3, title="Are the Brewers contenders in 2022?", description="Analyzing the Brewers chances in 2022", category_id=3, content=json.dumps({
-        {
   "blocks": [
     {
       "key": "8hte7",
@@ -522,7 +521,6 @@ def seed_threads():
         "targetOption": "_blank"
       }
     }
-  }
 }
     }))
 
