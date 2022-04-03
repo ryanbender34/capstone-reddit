@@ -131,6 +131,401 @@ def seed_threads():
   "entityMap": {}
     }))
 
+    g = Thread(user_id=3, title="Are the Brewers contenders in 2022?", description="Analyzing the Brewers chances in 2022", category_id=3, content=json.dumps({
+        {
+  "blocks": [
+    {
+      "key": "8hte7",
+      "text": "Coming off of a historic 2021 season that saw the Brewers best pitching staff since at least C.C. Sabathia was in town, the Brewers have high expectations for '22. ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "1g70a",
+      "text": "How high are the expectations? ",
+      "type": "header-three",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "3qrpo",
+      "text": "Online sportsbooks project the  Brewers to win 91.5 games, and fangraphs (click for link) projects the Brewers having an 82.5% chance of making the MLB playoffs. ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 62,
+          "length": 28,
+          "style": "ITALIC"
+        },
+        {
+          "offset": 63,
+          "length": 27,
+          "style": "color-rgb(41,105,176)"
+        },
+        {
+          "offset": 90,
+          "length": 72,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [
+        {
+          "offset": 63,
+          "length": 9,
+          "key": 0
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "4gvpa",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "bkm7m",
+      "text": "What do we think?",
+      "type": "header-four",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 17,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "730m5",
+      "text": "This seems reasonable upon first glance, as the pitching rotation and bullpen filled with familiar faces combine to provide a top of the line pitching rotation for this Brewers roster. However, the brewers lineup has struggled to produce at an above average rate in recent years, as the lack of quality depth and Christian Yelich's rapid decline have left the Brewers with a huge need for power in the lineup. ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 410,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "73epk",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "152o5",
+      "text": "As currently constructed (always subject to change with aggressive General Manager David Stearns) the opening day lineup appears to be set as such: ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 148,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "d60ag",
+      "text": "2B - Kolten Wong",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "169qn",
+      "text": "SS - Willy Adames ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 18,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "349uk",
+      "text": "LF - Christian Yelich",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 21,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "ca86f",
+      "text": "RF - Hunter Renfroe ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 20,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "6avc8",
+      "text": "3B - Luis Urias ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "color-rgb(51,51,51)"
+        },
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "fontsize-14"
+        },
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "fontfamily-Times"
+        },
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "er8g6",
+      "text": "1B - Rowdy Tellez / Keston Hiura",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 32,
+          "style": "color-rgb(51,51,51)"
+        },
+        {
+          "offset": 0,
+          "length": 32,
+          "style": "fontsize-14"
+        },
+        {
+          "offset": 0,
+          "length": 32,
+          "style": "fontfamily-Times"
+        },
+        {
+          "offset": 0,
+          "length": 32,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "fmp0e",
+      "text": "C - Omar Narvaez",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "color-rgb(51,51,51)"
+        },
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "fontsize-14"
+        },
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "fontfamily-Times"
+        },
+        {
+          "offset": 0,
+          "length": 16,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "c4b2o",
+      "text": "CF - Andrew McCutchen / Lorenzo Cain",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 36,
+          "style": "color-rgb(51,51,51)"
+        },
+        {
+          "offset": 0,
+          "length": 36,
+          "style": "fontsize-14"
+        },
+        {
+          "offset": 0,
+          "length": 36,
+          "style": "fontfamily-Times"
+        },
+        {
+          "offset": 0,
+          "length": 36,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "ftv6s",
+      "text": "DH - Tyrone Taylor",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 18,
+          "style": "color-rgb(51,51,51)"
+        },
+        {
+          "offset": 0,
+          "length": 18,
+          "style": "fontsize-14"
+        },
+        {
+          "offset": 0,
+          "length": 18,
+          "style": "fontfamily-Times"
+        },
+        {
+          "offset": 0,
+          "length": 18,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "86dp0",
+      "text": "A solid lineup no doubt, with the significant changes from last year being the addition of Hunter Renfroe in place of Avisail Garcia, and Andrew McCutchen replacing Jackie Bradley Jr. in CF. The addition of Renfroe in particular is potentially game changing, as he has multiple 30HR seasons and should benefit from a transition to hitter friendly Miller Park. A hot season from Renfroe could go a long ways towards getting the lineup back on track and producing at an above average level. If Christian Yelich can get back on track, Renfroe's power transitions nicely to Miller Park, and we get some internal improvement from young players such as Keston Hiura and Luis Urias, we could be looking at an above average lineup - which would make the Brewers a top 3-5 team in baseball when paired with the elite pitching staff. ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 824,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {
+        "text-align": "start"
+      }
+    },
+    {
+      "key": "6cluc",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "bgkft",
+      "text": "All in all I expect another fun season, a NL central title, and a punchers chance in the playoffs at beating the powerhouse LA Dodgers, which is all you can ask for from a Brewers team that is at a significant financial disadvantage relative to their competition. If I had to make a prediction - I would take the over, as the Brewers have shown the ability to win a majority of their close games utilizing the value of Josh Hader out of the bullpen in key moments. Additionally, GM David Stearns may be in his last season with the team - meaning he may be inclined to trade away some future assets (such as former 1st round pick Ethan Small) to improve the current team and make a push to win the World Series during his excellent stint here in Milwaukee.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 755,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "a3n0d",
+      "text": "Let me know what you guys expect in the comments below!",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 55,
+          "style": "color-rgb(0,0,0)"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    }
+  ],
+  "entityMap": {
+    "0": {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "https://www.fangraphs.com/standings/playoff-odds",
+        "targetOption": "_blank"
+      }
+    }
+  }
+}
+    }))
+
 
     # Thread.__table__.create(db.session.bind)
 
@@ -140,6 +535,7 @@ def seed_threads():
     db.session.add(d)
     db.session.add(e)
     db.session.add(f)
+    db.session.add(g)
 
     db.session.commit()
 
